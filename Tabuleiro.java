@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Tabuleiro {
     private int cima;
@@ -32,6 +33,11 @@ public class Tabuleiro {
 
             System.out.print("\t");
             System.out.print("\n");
+        
+    }
+
+
+    public void gerarOrigemDoVirus(){
         
     }
 }
