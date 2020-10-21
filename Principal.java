@@ -8,6 +8,7 @@ public class Principal {
         Tabuleiro x=new Tabuleiro();
         x.mostrar();        
         Scanner input = new Scanner(System.in);
+
         List<Jogador> jogadores = new ArrayList<>();
         
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
