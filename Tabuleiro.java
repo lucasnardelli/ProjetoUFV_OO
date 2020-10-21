@@ -14,11 +14,14 @@ public class Tabuleiro {
             for(int c=0;c<5;c++){
                 tabuleiro1[l][c]=0;
                 if( tabuleiro1[l][c]==0){
-                    System.out.print("___\n");
-                    System.out.print("|   |\n ___");
+                    System.out.print("____\n");
+                    System.out.print("|      |\n|      |" +
+                            "\n ____");
+
                 }
             }
             System.out.println();
+
         }        
     }
 }
