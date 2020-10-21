@@ -25,20 +25,17 @@ public class Tabuleiro {
                     System.out.print("|   |  |   |  |   |  |   |");
                     System.out.println();
                     System.out.println("|   |  |   |  |   |  |   |");
-                    System.out.print("----  _____  _____  _____");
+                    System.out.print("-----  -----  -----  -----");
                     System.out.println();
                     System.out.print("\n");
 
         }
-
-            System.out.print("\t");
-            System.out.print("\n");
-        
+            
     }
-
 
     public void gerarOrigemDoVirus(){
         
     }
 }
+
 

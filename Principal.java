@@ -8,7 +8,6 @@ public class Principal {
         Tabuleiro x=new Tabuleiro();
         x.mostrar();        
         Scanner input = new Scanner(System.in);
-        
         List<Jogador> jogadores = new ArrayList<>();
         
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
@@ -34,9 +33,9 @@ public class Principal {
                             if(escolha == 'a'){
                                 jog.atacar();
                             }else if(escolha == 'p'){
-                                jog.procurar();
+                                jog.procurar(jog);
                             }else if(escolha == 'r'){
-                                jog.recuperarDEF();
+                                jog.recuperarDEF(jogadores);
                             }
                         }                   
                     }
