@@ -30,11 +30,8 @@ public class Tabuleiro {
                     System.out.println();
                     System.out.print("\n");
 
-
                 }
-
             }
-
             System.out.print("\t");
             System.out.print("\n");
         }
