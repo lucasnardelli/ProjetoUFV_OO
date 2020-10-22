@@ -24,6 +24,7 @@ public class Tabuleiro {
                     System.out.println();
                     System.out.print("|   |  |   |  |   |  |   |");
                     System.out.println();
+
                     System.out.println("|   |  |   |  |   |  |   |");
                     System.out.print("-----  -----  -----  -----");
                     System.out.println();
@@ -33,9 +34,6 @@ public class Tabuleiro {
             
     }
 
-    public void gerarOrigemDoVirus(){
-        
-    }
 }
 
 
