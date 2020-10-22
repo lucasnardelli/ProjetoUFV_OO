@@ -10,6 +10,9 @@ public class Virus {
     
     Random gerador = new Random();
     int tamanho_vet =  gerador.nextInt(5)+1;
+
+
+
     public int getATK(){
         return this.ATK;
     }

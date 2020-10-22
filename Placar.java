@@ -3,7 +3,8 @@ import java.util.List;
 public class Placar extends Principal{
 
     List<Jogador> jogadores_principal=new ArrayList<>();
-    Virus virusPlacar=new Virus();
+    ArrayList<Virus>recebeVirus=new ArrayList<>();
+
 
     public Placar(List<Jogador>jogadores) {
         this.jogadores_principal=jogadores;
@@ -11,7 +12,6 @@ public class Placar extends Principal{
     }
     public void tipoJogador(){
         for (Jogador tipoJogador:jogadores_principal) {
-
             if(tipoJogador.getATK()==1)
             {
                 //jogador suporte
@@ -19,7 +19,6 @@ public class Placar extends Principal{
           else
             {
                 //jogador Simples
-
             }
         }
     }

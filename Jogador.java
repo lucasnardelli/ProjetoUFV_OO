@@ -6,6 +6,7 @@ public class Jogador {
 
     private int  ATK;
     private int  DEF;
+    private int cont_Jogadas;
 
     Scanner input = new Scanner(System.in);
 
