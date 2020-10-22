@@ -15,6 +15,14 @@ public class Jogador {
         this.DEF = DEF;
     }
 
+    public int getCont_Jogadas() {
+        return cont_Jogadas;
+    }
+
+    public void setCont_Jogadas(int cont_Jogadas) {
+        this.cont_Jogadas = cont_Jogadas;
+    }
+
     public int getATK() {
         return this.ATK;
     }
@@ -38,8 +46,6 @@ public class Jogador {
     public void atacar(){
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
-
-        
 
     }
 

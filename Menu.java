@@ -27,10 +27,13 @@ public class Menu {
                         char escolha = input.next().charAt(0);
                         if(escolha == 'a'){
                             jog.atacar();
+                            jog.setCont_Jogadas(+1);
                         }else if(escolha == 'p'){
                             jog.procurar(jog);
+                            jog.setCont_Jogadas(+1);
                         }else if(escolha == 'r'){
                             jog.recuperarDEF(jogadores);
+                            jog.setCont_Jogadas(+1);
                         }
                     } else {
                         System.out.println("Player " + aux + " qual vai ser sua escolha: atacar, procurar ou recuperar (a/p/r)?");
