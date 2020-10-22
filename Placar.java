@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
-public class Placar extends Principal{
+public class Placar extends Principal {
 
     List<Jogador> jogadoresPrincipal = new ArrayList<>();
     List<Virus> recebeVirus = new ArrayList<>();
+
 
     public Placar(List<Jogador> jogadores){
         this.jogadoresPrincipal = jogadores;
@@ -17,6 +18,7 @@ public class Placar extends Principal{
         this.jogadoresPrincipal = jogadoresPrincipal;
     }
 
+
     public List<Virus> getRecebeVirus() {
         return this.recebeVirus;
     }
@@ -29,12 +31,33 @@ public class Placar extends Principal{
         for (Jogador tipoJogador:jogadoresPrincipal) {
             if(tipoJogador.getATK()==1)
             {
+
                 //jogador suporte
-            }
-          else
-            {
+            } else {
                 //jogador Simples
             }
+
         }
     }
+
+
+    public void mostraPlacar()
+    {
+        for (int i=0;i<1;i++ ) {
+            System.out.println();
+            System.out.print("____________________");
+            for (int c=0;c<6;c++)
+            {
+                System.out.println();
+                System.out.print("|                  |");
+
+
+            }
+
+            System.out.println();
+            System.out.print("--------------------");
+        }
+
+    }
+
 }
