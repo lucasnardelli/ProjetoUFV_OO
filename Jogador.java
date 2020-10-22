@@ -6,7 +6,6 @@ public class Jogador {
 
     private int  ATK;
     private int  DEF;
-    private int cont_Jogadas;
 
     Scanner input = new Scanner(System.in);
 
@@ -15,20 +14,8 @@ public class Jogador {
         this.DEF = DEF;
     }
 
-    public int getCont_Jogadas() {
-        return cont_Jogadas;
-    }
-
-    public void setCont_Jogadas(int cont_Jogadas) {
-        this.cont_Jogadas = cont_Jogadas;
-    }
-
     public int getATK() {
         return this.ATK;
-    }
-
-    public void setATK(int ATK) {
-        this.ATK = ATK;
     }
 
     public int getDEF() {
@@ -46,7 +33,6 @@ public class Jogador {
     public void atacar(){
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
-
     }
 
     public void procurar(Jogador jogador) {
@@ -57,10 +43,13 @@ public class Jogador {
             System.out.println("Você não encontrou nada");
         }else if(valor == 4){
             jogador.setDEF(getDEF()+1);
+            System.out.println("Parabens, sua defesa foi aumentada em 1");
         }else if(valor == 5){
             jogador.setDEF(getDEF()+2);
+            System.out.println("Parabens, sua defesa foi aumentada em 2");
         }else if(valor == 6){
             // tirar 1 de DEF dos inimigos do setor
+            System.out.println("Parabens, cada inimigo perdeu 1 de defesa");
         }
     }
 

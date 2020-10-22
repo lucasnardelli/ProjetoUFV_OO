@@ -4,6 +4,15 @@ import java.util.List;
 public class Menu {
     
     Scanner input = new Scanner(System.in);
+    private int cont_Ciclos = 0;
+
+    public int getCont_Ciclos() {
+        return cont_Ciclos;
+    }
+
+    public void setCont_Jogadas(int cont_Jogadas) {
+        this.cont_Ciclos = cont_Jogadas;
+    }
 
     //public void escolherOndeMovimentar(){}
 
@@ -27,16 +36,13 @@ public class Menu {
                         char escolha = input.next().charAt(0);
                         if(escolha == 'a'){
                             jog.atacar();
-                            jog.setCont_Jogadas(+1);
                         }else if(escolha == 'p'){
                             jog.procurar(jog);
-                            jog.setCont_Jogadas(+1);
                         }else if(escolha == 'r'){
                             jog.recuperarDEF(jogadores);
-                            jog.setCont_Jogadas(+1);
                         }
                     } else {
-                        System.out.println("Player " + aux + " qual vai ser sua escolha: atacar, procurar ou recuperar (a/p/r)?");
+                        System.out.println("Player " + aux + " qual vai ser sua escolha: atacar ou procurar (a/p)?");
                         char escolha = input.next().charAt(0);
                         if(escolha == 'a'){
                             jog.atacar();
@@ -51,5 +57,6 @@ public class Menu {
             }
             aux++;
         }
+        cont_Ciclos++;
     }
 }

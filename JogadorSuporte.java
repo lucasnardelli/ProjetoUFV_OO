@@ -15,9 +15,11 @@ public class JogadorSuporte extends Jogador{
         int jogador = teclado.nextInt();
         if(jogador == 1){
             jogadores.get(jogador-1).setDEF((getDEF()+2));
+            System.out.println("Defesa do jogador " + jogador + " recuperada com sucesso!");
         } 
         else if(jogador == 2){
             jogadores.get(jogador-1).setDEF((getDEF()+2));
+            System.out.println("Defesa do jogador " + jogador + " recuperada com sucesso!");
         }
     }
 }

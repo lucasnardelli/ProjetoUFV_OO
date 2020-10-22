@@ -32,10 +32,6 @@ public class Tabuleiro {
         }
             
     }
-
-    public void gerarOrigemDoVirus(){
-        
-    }
 }
 
 
