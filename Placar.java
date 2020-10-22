@@ -4,8 +4,4 @@ public class Placar {
     JogadorSuporte suporte=new JogadorSuporte();
 
 
-
-
-
-
 }
