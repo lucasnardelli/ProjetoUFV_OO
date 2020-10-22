@@ -3,46 +3,32 @@ import java.util.List;
 import java.util.Random;
 
 public class Virus {
-    int ATK;
-   int DEF;
-    List<Virus>ovirus=new ArrayList<>();
-    Random nvirus=new Random();
-    Random ATK_DEF=new Random();
-   int tamanho_vet=  nvirus.nextInt(5)+1;
-   int temp_atk_def=ATK_DEF.nextInt(3)+1;
-    Virus tempVirus=new Virus();
-    public int getTemp_atk_def() {
-        return temp_atk_def;
+
+
+    private int ATK;
+    private int DEF;
+    
+    Random gerador = new Random();
+    int tamanho_vet =  gerador.nextInt(5)+1;
+    public int getATK(){
+        return this.ATK;
     }
-
-
-    public Virus() {
-
+    public int getDEF(){
+        return this.DEF;
+    }
+    public List<Virus> geradorDeVirus(){
+        List<Virus> virus = new ArrayList<>();
+        
         do{
-            tempVirus.ATK=temp_atk_def;
-             tempVirus.DEF=temp_atk_def;
-            ovirus.add(tempVirus);
+            Virus tempVirus = new Virus();
 
-            tamanho_vet--;
-            mostra_virus();
+            tempVirus.ATK = gerador.nextInt(3)+1;
+            tempVirus.DEF = tempVirus.ATK;
+            virus.add(tempVirus);
+    
+            tamanho_vet--;            
         }while (tamanho_vet>0);
+
+        return virus;
     }
-
-    public List<Virus> getOvirus() {
-        return ovirus;
-    }
-    public Virus mostra_virus(){
-
-        for (Virus vi: ovirus) {
-
-            return vi;
-
-        }
-    }
-
 }
-
-
-
-
-

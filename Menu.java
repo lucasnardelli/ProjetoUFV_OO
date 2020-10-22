@@ -2,21 +2,21 @@ import java.util.Scanner;
 import java.util.List;
 
 public class Menu {
+    
     Scanner input = new Scanner(System.in);
 
+    //public void escolherOndeMovimentar(){}
 
     public Jogador escolherPersonagem(int i){
-
             System.out.print("Player " + i + " você deseja ser suporte(1) ou simples(2)?");
             int escolha = input.nextInt();
             
             if(escolha == 1){
                 return new JogadorSuporte();
-            } else if(escolha == 2){
-                return new JogadorSuporte();
-            }                    
+            } else {
+                return new JogadorSimples();
+            }                  
     }
-
     public void escolherAcao(List<Jogador> jogadores){
         int aux = 1;
         for(Jogador jog : jogadores){
@@ -32,7 +32,15 @@ public class Menu {
                         }else if(escolha == 'r'){
                             jog.recuperarDEF(jogadores);
                         }
-                    }                   
+                    } else {
+                        System.out.println("Player " + aux + " qual vai ser sua escolha: atacar, procurar ou recuperar (a/p/r)?");
+                        char escolha = input.next().charAt(0);
+                        if(escolha == 'a'){
+                            jog.atacar();
+                        }else if(escolha == 'p'){
+                            jog.procurar(jog);
+                        }
+                    }                  
                 }
             } else {
                 jogadores.remove(jog);
