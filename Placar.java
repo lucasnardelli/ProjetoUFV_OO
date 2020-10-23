@@ -56,11 +56,13 @@ public class Placar extends Principal {
             System.out.println();
             System.out.println("________________________________________");
             System.out.print("|"+recebeoVirus.toString()+"|");
+
             for (int c=0;c<6;c++)
             {
                 System.out.println();
                 System.out.print("|                                    |");
             }
+
             System.out.println();
             System.out.print("----------------------------------------");
 
