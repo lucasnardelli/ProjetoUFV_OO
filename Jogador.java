@@ -51,6 +51,9 @@ public class Jogador {
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
         virus.get(inimigo - 1).setDEF(getDEF() - this.ATK);
+        if(virus.get(inimigo - 1).getDEF() <= 0){
+            virus.remove(inimigo - 1);
+        }
         System.out.println("Inimigo atacado com sucesso!");
     }
 
