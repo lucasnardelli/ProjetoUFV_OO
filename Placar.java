@@ -7,7 +7,14 @@ public class Placar extends Principal {
     private Boolean direita;
 
     List<Jogador> jogadoresPrincipal = new ArrayList<>();
-    List<Virus> recebeVirus = new ArrayList<>();
+    List<Virus> recebeoVirus = new ArrayList<>();
+    Virus x=new Virus();
+
+    public void recebeVirus()
+    {
+      recebeoVirus=x.geradorDeVirus();//adiciona todos os virus
+    }
+
 
     public Placar(List<Jogador> jogadores){
         this.jogadoresPrincipal = jogadores;
@@ -55,12 +62,13 @@ public class Placar extends Principal {
 
 
     public List<Virus> getRecebeVirus() {
-        return this.recebeVirus;
+        return this.recebeoVirus;
     }
 
     public void setRecebeVirus(List<Virus> recebeVirus) {
-        this.recebeVirus = recebeVirus;
+        this.recebeoVirus = recebeVirus;
     }
+   // public void calculo
 
     public void tipoJogador(){
         for (Jogador tipoJogador:jogadoresPrincipal) {
@@ -78,20 +86,19 @@ public class Placar extends Principal {
 
     public void mostraPlacar()
     {
-        for (int i=0;i<1;i++ ) {
+        recebeVirus();
+
             System.out.println();
-            System.out.print("____________________");
+            System.out.println("________________________________________");
+            System.out.print("|"+recebeoVirus.toString()+"|");
             for (int c=0;c<6;c++)
             {
                 System.out.println();
-                System.out.print("|                  |");
-
-
+                System.out.print("|                                    |");
             }
-
             System.out.println();
-            System.out.print("--------------------");
-        }
+            System.out.print("----------------------------------------");
+
 
     }
 
