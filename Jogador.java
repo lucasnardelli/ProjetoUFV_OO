@@ -28,14 +28,30 @@ public class Jogador {
     }
 
     // metodo usado para o jogador escolher a direção que quer se movimentar
-    public void movimentar(){
-        
+    public void movimentar(Placar placar){
+        System.out.println("Você deseja ir para cima, direita, baixo ou esquerda? (c/d/b/e)");
+        char direcao = input.next().charAt(0);
+        if(direcao == 'c'){
+            placar.setCima(true);
+            System.out.println("Você foi para cima!");
+        }else if(direcao == 'd'){
+            placar.setDireita(true);
+            System.out.println("Você foi para direita!");
+        }else if(direcao == 'b'){
+            placar.setBaixo(true);
+            System.out.println("Você foi para baixo!");
+        }else if(direcao == 'e'){
+            placar.setEsquerda(true);
+            System.out.println("Você foi para esquerda!");
+        }
     }
 
     // metodo para o jogador escolher qual inimigo ele ira atacar
-    public void atacar(){
+    public void atacar(List<Virus> virus){
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
+        virus.get(inimigo - 1).setDEF(getDEF() - this.ATK);
+        System.out.println("Inimigo atacado com sucesso!");
     }
 
     // metodo para o jogador procurar no setor que ele esta
@@ -61,9 +77,7 @@ public class Jogador {
     }
 
     // Declaração do metodo de recuperar defesa para o jogador suporte poder ter acesso
-    public void recuperarDEF(List<Jogador> jogadores){
-
-    }
+    public void recuperarDEF(List<Jogador> jogadores){}
 
     @Override
     public String toString() {

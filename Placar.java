@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 public class Placar extends Principal {
+    private Boolean cima;
+    private Boolean esquerda;
+    private Boolean baixo;
+    private Boolean direita;
 
     List<Jogador> jogadoresPrincipal = new ArrayList<>();
     List<Virus> recebeoVirus = new ArrayList<>();
@@ -12,11 +16,42 @@ public class Placar extends Principal {
     }
 
 
-
     public Placar(List<Jogador> jogadores){
         this.jogadoresPrincipal = jogadores;
     }
 
+    public Boolean getCima() {
+        return this.cima;
+    }
+
+    public void setCima(Boolean cima) {
+        this.cima = cima;
+    }
+
+    public Boolean getEsquerda() {
+        return this.esquerda;
+    }
+
+    public void setEsquerda(Boolean esquerda) {
+        this.esquerda = esquerda;
+    }
+
+    public Boolean getBaixo() {
+        return this.baixo;
+    }
+
+    public void setBaixo(Boolean baixo) {
+        this.baixo = baixo;
+    }
+
+    public Boolean getDireita() {
+        return this.direita;
+    }
+
+    public void setDireita(Boolean direita) {
+        this.direita = direita;
+    }
+    
     public List<Jogador> getjogadoresPrincipal() {
         return this.jogadoresPrincipal;
     }
@@ -54,8 +89,14 @@ public class Placar extends Principal {
         recebeVirus();
 
             System.out.println();
-            System.out.println("________________________________________");
-            System.out.print("|"+recebeoVirus.toString()+"|");
+            System.out.println("______________________________________");
+
+            System.out.print("|"+recebeoVirus.toString());    
+            for(int i=0 ; i< 5 - recebeoVirus.size() ; i++){
+                //Sempre que alterar um carcter no Virus.toString alterar os espaços aqui
+                System.out.print("      ");
+            }
+            System.out.print("      |");
 
             for (int c=0;c<6;c++)
             {
@@ -64,7 +105,7 @@ public class Placar extends Principal {
             }
 
             System.out.println();
-            System.out.print("----------------------------------------");
+            System.out.print("--------------------------------------");
 
 
     }

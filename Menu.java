@@ -28,7 +28,7 @@ public class Menu {
     }
 
     // metodo para o jogador escolher o que ira fazer naquele turno
-    public void escolherAcao(List<Jogador> jogadores){
+    public void escolherAcao(List<Jogador> jogadores, List<Virus> virus){
         int aux = 1;
         for(Jogador jog : jogadores){
             // verifica se o jogador esta vivo
@@ -39,7 +39,7 @@ public class Menu {
                         System.out.println("Player " + aux + " qual vai ser sua escolha atacar, procurar ou recuperar (a/p/r)?");
                         char escolha = input.next().charAt(0);
                         if(escolha == 'a'){
-                            jog.atacar();
+                            jog.atacar(virus);
                         }else if(escolha == 'p'){
                             jog.procurar(jog);
                         }else if(escolha == 'r'){
@@ -49,7 +49,7 @@ public class Menu {
                         System.out.println("Player " + aux + " qual vai ser sua escolha: atacar ou procurar (a/p)?");
                         char escolha = input.next().charAt(0);
                         if(escolha == 'a'){
-                            jog.atacar();
+                            jog.atacar(virus);
                         }else if(escolha == 'p'){
                             jog.procurar(jog);
                         }
