@@ -12,7 +12,6 @@ public class Principal {
         
         Placar placar = new Placar(jogadores);
         placar.mostraPlacar();
-        // x.mostrar();
 
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
         for(int i = 1; i<=2 ; i++){

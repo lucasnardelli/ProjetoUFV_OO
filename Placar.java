@@ -90,7 +90,12 @@ public class Placar extends Principal {
 
             System.out.println();
             System.out.println("________________________________________");
-            System.out.print("|"+recebeoVirus.toString()+"|");
+            System.out.print("|"+recebeoVirus.toString());    
+            for(int i=0 ; i< 5 - recebeoVirus.size() ; i++){
+                //Sempre que alterar um carcter no Virus.toString alterar os espaços aqui
+                System.out.print("      ");
+            }
+            System.out.print("      |");
             for (int c=0;c<6;c++)
             {
                 System.out.println();

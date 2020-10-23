@@ -45,6 +45,7 @@ public class Virus {
 
     @Override
     public String toString() {
+        //Sempre que alterar um carcter no aqui alterar os espaços no Placar.mostraPlacar
         return "V" +
                   ATK +
                 "/" + DEF
