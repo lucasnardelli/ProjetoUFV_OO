@@ -1,12 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class Tabuleiro {
-    private int cima;
-    private int esquerda;
-    private int baixo;
-    private int direita;
 
     
     int tabuleiro1[][]=new int [5][5];

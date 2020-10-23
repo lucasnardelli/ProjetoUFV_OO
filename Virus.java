@@ -16,9 +16,15 @@ public class Virus {
     public int getATK(){
         return this.ATK;
     }
+
     public int getDEF(){
         return this.DEF;
     }
+
+    public void setDEF(int DEF){
+        this.DEF = DEF;
+    }
+
     public List<Virus> geradorDeVirus(){//RETORNA UMA LISTA
         
         List<Virus> virus = new ArrayList<>();//LISTA DE VIRUS TEMPORARIA 
