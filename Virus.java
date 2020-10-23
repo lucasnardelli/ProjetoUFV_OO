@@ -20,8 +20,8 @@ public class Virus {
         return this.DEF;
     }
     public List<Virus> geradorDeVirus(){//RETORNA UMA LISTA
-        
-        List<Virus> virus = new ArrayList<>();//LISTA DE VIRUS TEMPORARIA 
+
+        List<Virus> virus = new ArrayList<>();//LISTA DE VIRUS TEMPORARIA
         
         do{
             Virus tempVirus = new Virus();
@@ -33,7 +33,15 @@ public class Virus {
             tamanho_vet--;            
         }while (tamanho_vet>0);//SO TERMINA QUANDO TODOS OS VIRUS SAO ADD
 
-        return virus;//RETORNA LISTA DE VIRUS GERADOS 
-        
+        return virus;//RETORNA LISTA DE VIRUS GERADOS
+
+    }
+
+    @Override
+    public String toString() {
+        return "V" +
+                  ATK +
+                "/" + DEF
+                ;
     }
 }
