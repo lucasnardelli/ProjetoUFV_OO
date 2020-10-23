@@ -12,7 +12,7 @@ public class Principal {
         List<Jogador> jogadores = new ArrayList<>();
         Placar y =new Placar(jogadores);
         y.mostraPlacar();
-       // x.mostrar();
+        // x.mostrar();
 
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
         for(int i = 1; i<=2 ; i++){
