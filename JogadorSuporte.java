@@ -9,6 +9,7 @@ public class JogadorSuporte extends Jogador{
         super(1, 7);
     } 
 
+    // metodo sobrescrito para escolher de quem ira recuperar a defesa
     @Override
     public void recuperarDEF( List<Jogador> jogadores ){
         System.out.print("Você deseja recuperar a defesa de qual jogador(1 ou 2)?");

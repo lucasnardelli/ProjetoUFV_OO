@@ -9,7 +9,7 @@ public class Virus {
     private int DEF;
     
     Random gerador = new Random();
-    int tamanho_vet =  gerador.nextInt(5)+1;
+    int tamanho_vet =  gerador.nextInt(5)+1;//NUMERO DE VIRUS
 
 
 
@@ -19,19 +19,21 @@ public class Virus {
     public int getDEF(){
         return this.DEF;
     }
-    public List<Virus> geradorDeVirus(){
-        List<Virus> virus = new ArrayList<>();
+    public List<Virus> geradorDeVirus(){//RETORNA UMA LISTA
+        
+        List<Virus> virus = new ArrayList<>();//LISTA DE VIRUS TEMPORARIA 
         
         do{
             Virus tempVirus = new Virus();
 
-            tempVirus.ATK = gerador.nextInt(3)+1;
-            tempVirus.DEF = tempVirus.ATK;
+            tempVirus.ATK = gerador.nextInt(3)+1;//ATK ==DEF EM RANDOM
+            tempVirus.DEF = tempVirus.ATK;//ATK ==DEF EM RANDOM
             virus.add(tempVirus);
     
             tamanho_vet--;            
-        }while (tamanho_vet>0);
+        }while (tamanho_vet>0);//SO TERMINA QUANDO TODOS OS VIRUS SAO ADD
 
-        return virus;
+        return virus;//RETORNA LISTA DE VIRUS GERADOS 
+        
     }
 }

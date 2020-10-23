@@ -23,6 +23,7 @@ public class Principal {
         System.out.println("O jogo começou!");
         System.out.println("Vocês estão no meio do tabuleiro!");
         
+        // while para o jogo continuar enquanto o ciclo não chegar em 25
         while(menu.getCont_Ciclos() <= 25){
         menu.escolherAcao(jogadores);    
         }
