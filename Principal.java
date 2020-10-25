@@ -4,13 +4,12 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-            
-        Scanner input = new Scanner(System.in);
-        Menu menu = new Menu();
-
         List<Jogador> jogadores = new ArrayList<>();
-        
+        Scanner input = new Scanner(System.in);
         Placar placar = new Placar(jogadores);
+        Menu menu = new Menu();
+        Tabuleiro x=new Tabuleiro();
+        x.mostrar();
         placar.mostraPlacar();
 
         // for para os jogadores escolherem qual tipo de jogador eles vão ser

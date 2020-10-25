@@ -4,14 +4,11 @@ import java.util.Random;
 
 public class Virus {
 
-
     private int ATK;
     private int DEF;
     
     Random gerador = new Random();
     int tamanho_vet =  gerador.nextInt(5)+1;//NUMERO DE VIRUS
-
-
 
     public int getATK(){
         return this.ATK;
