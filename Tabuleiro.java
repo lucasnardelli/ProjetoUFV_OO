@@ -1,7 +1,7 @@
 public class Tabuleiro {
 
     
-    char tabuleiro1[][]=new char [5][5];
+    char tabuleiro1[][]=new char [20][20];
 
   /*  public void mostrar() {
         for(int l=0;l<5;l++){
@@ -36,22 +36,29 @@ public class Tabuleiro {
 
                 System.out.print("|");
 
+                tabuleiro1[l][c]='|';
             }
             if(l%2==0){
 
                 System.out.print("---");
+                tabuleiro1[l][c]='-';
                 if(c==4){
                     System.out.print("|");
+                    tabuleiro1[l][c]='|';
                 }
             }else {
                 System.out.print("|  \t");
+                tabuleiro1[l][c]='|';
                 if(c==4){
                     System.out.print("|");
+                    tabuleiro1[l][c]='|';
                 }
             }
             }
             System.out.println();
         }
+
+
     }
 
 
