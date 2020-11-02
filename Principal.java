@@ -9,9 +9,10 @@ public class Principal {
         Placar placar = new Placar(jogadores);
         Menu menu = new Menu();
         Tabuleiro x=new Tabuleiro();
-        x.mostrar();
-        placar.mostraPlacar();
-
+        TststeTabuleiro z=new TststeTabuleiro();
+      //  x.mostrar();
+       // placar.mostraPlacar();
+        z.caminho_virus();
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
         for(int i = 1; i<=2 ; i++){
             jogadores.add(menu.escolherPersonagem(i));
