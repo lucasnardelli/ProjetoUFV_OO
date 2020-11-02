@@ -1,25 +1,10 @@
+import java.util.Random;
 public class TststeTabuleiro {
-
-    public void testetabuleiro(){
-        int[][] mat=new int [20][20];
-        for (int l=0;l<20;l++)
-        {
-
-            for(int c=0;c<20;c++)
-            {
-                
-
-
-
-
-            }
-
-
-        }
-
-
-
-
+    int[][] mat = new int[5][5];
+    Random gerador = new Random();
+    
+    public void  geraOrigemVirus(){
+        int linha = gerador.nextInt(5)+1;
     }
 
 }
