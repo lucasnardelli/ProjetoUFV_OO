@@ -21,17 +21,15 @@ public class TststeTabuleiro {
             if (local_coluna < 2) {
                 mat[local_linha][coluna_cont] = 4;
                 coluna_cont--;
-
             } else if (local_coluna > 2) {
                 mat[local_linha][coluna_cont] = 4;
                 coluna_cont++;
             }
+            mat[2][2] = 99;
         } while (coluna_cont != local_coluna);
-
         extremidade();
         mostrarTabuleiro();
     }
-
     public void mat_1() {
         for (int i = 0; i < 5; i++) {
             for (int c = 0; c < 5; c++) {
@@ -39,7 +37,6 @@ public class TststeTabuleiro {
             }
         }
     }
-
     public void extremidade() {
         for (int i = 0; i < 5; i++) {
             for (int c = 0; c < 5; c++) {
@@ -50,7 +47,6 @@ public class TststeTabuleiro {
             }
         }
     }
-
     public void mostrarTabuleiro() {
         for (int i = 0; i < 5; i++) {
             for (int c = 0; c < 5; c++) {
@@ -59,5 +55,4 @@ public class TststeTabuleiro {
             System.out.println();
         }
     }
-
 }
