@@ -4,21 +4,41 @@ public class TststeTabuleiro
 {
    public int[][] mat=new int [5][5];
     public void caminho_virus() {
-        Random linha = new Random();
-        Random coluna = new Random();
+        Random gerador= new Random();
+        int local_linha;
+        int local_coluna;
+        int coluna_cont;
+        coluna_cont=0;
     do {
-        mat[linha.nextInt(4)][coluna.nextInt(4)] = 80;
         mat[2][2] = 99;
+         local_linha=gerador.nextInt(4);
+        local_coluna=gerador.nextInt(4);
+        mat[local_linha][local_coluna] = 80;
         for (int i = 0; i < 5; i++) {
             for (int c = 0; c < 5; c++) {
                 if(i==0||c==0||i==4||c==4){
                   //  mat[i][c]=mat[i][c]*-1;//logica real
-                     mat[i][c]=mat[i][c]=-1;
+                 //  mat[i][c]=mat[i][c]=-1;
                 }
                 System.out.print("\t" + mat[i][c]);
             }
             System.out.println();
         }
     }while (mat[2][2]==80);
+
+        do {
+            if(local_coluna<2)
+            {
+                mat[local_linha][coluna_cont]=4;
+                coluna_cont++;
+
+            }else(local_coluna>2)
+            {
+                mat[local_linha][coluna_cont]=4;
+                coluna_cont--;
+            }
+        }while (coluna_cont!=local_coluna);
+
+
     }
 }
