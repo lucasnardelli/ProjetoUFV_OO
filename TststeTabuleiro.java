@@ -11,20 +11,32 @@ public class TststeTabuleiro {
         mat_1();
         do {
             mat[2][2] = 99;
-            local_linha = gerador.nextInt(4);
-            local_coluna = gerador.nextInt(4);
+            local_linha = 2;/*gerador.nextInt(4);*/
+            local_coluna = 0;/*gerador.nextInt(4);*/
             mat[local_linha][local_coluna] = 80;
 
         } while (mat[2][2] == 80);
 //caminho do virus
         do {
             if (local_coluna < 2) {
-                mat[local_linha][coluna_cont] = 4;
-                coluna_cont--;
+                if(local_linha != 2){
+                    mat[local_linha][coluna_cont] = 4;
+                    coluna_cont--;
+                } else {
+                    if(mat[local_linha][coluna_cont] != 99){
+                        mat[local_linha][coluna_cont] = 4;
+                        coluna_cont--;
+                    }                    
+                }
 
             } else if (local_coluna > 2) {
-                mat[local_linha][coluna_cont] = 4;
-                coluna_cont++;
+                if(local_linha != 2){
+                    mat[local_linha][coluna_cont] = 4;
+                    coluna_cont++;
+                } else if(mat[local_linha][coluna_cont] != 99) {
+                    mat[local_linha][coluna_cont] = 4;
+                    coluna_cont++;
+                }
             }
         } while (coluna_cont != local_coluna);
 
