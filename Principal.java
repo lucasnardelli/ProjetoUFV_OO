@@ -8,30 +8,29 @@ public class Principal {
         Scanner input = new Scanner(System.in);
         Placar placar = new Placar(jogadores);
         Menu menu = new Menu();
-        Tabuleiro x=new Tabuleiro();
-        x.mostrar();
-        placar.mostraPlacar();
-
+        Tabuleiro x = new Tabuleiro();
+        TststeTabuleiro z = new TststeTabuleiro();
+        // x.mostrar();
+        // placar.mostraPlacar();
+        z.caminho_virus();
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
-        for(int i = 1; i<=2 ; i++){
+        for (int i = 1; i <= 2; i++) {
             jogadores.add(menu.escolherPersonagem(i));
         }
 
         System.out.println("O jogo começou!");
         System.out.println("Vocês estão no meio do tabuleiro!");
-        
+
         // while para o jogo continuar enquanto o ciclo não chegar em 25
-        while(menu.getCont_Ciclos() <= 25){
-            for(Jogador jog : jogadores){
+        while (menu.getCont_Ciclos() <= 25) {
+            for (Jogador jog : jogadores) {
                 jog.movimentar(placar);
             }
-            
-            menu.escolherAcao(jogadores, placar.getRecebeVirus());    
-        }
 
+            menu.escolherAcao(jogadores, placar.getRecebeVirus());
+        }
 
         input.close();
     }
-
 
 }

@@ -16,19 +16,13 @@ public class Tabuleiro {
      * System.out.println(); } }
      */
     public void mostrar() {
-
         for (int l = 0; l < 11; l++) {
-
             for (int c = 0; c < 5; c++) {
-
                 if (c != 5 && l % 2 == 0) {
-
                     System.out.print("|");
-
                     tabuleiro1[l][c] = '|';
                 }
                 if (l % 2 == 0) {
-
                     System.out.print("---");
                     tabuleiro1[l][c] = '-';
                     if (c == 4) {
@@ -46,7 +40,6 @@ public class Tabuleiro {
             }
             System.out.println();
         }
-
     }
 
 }
