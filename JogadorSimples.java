@@ -1,10 +1,5 @@
 public class JogadorSimples extends Jogador {
-
-
-    public JogadorSimples (){
+    public JogadorSimples() {
         super(2, 6);
-
     }
-
 }
-

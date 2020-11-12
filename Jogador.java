@@ -2,17 +2,18 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Random;
 
-public class Jogador {
+public abstract class Jogador {
 
-    private int  ATK;
-    private int  DEF;
-
+    private int ATK, DEF, linha, coluna;
+    
     Scanner input = new Scanner(System.in);
 
     // construtor para definir o ataque e a defesa do jogador
     public Jogador(int ATK, int DEF) {
         this.ATK = ATK;
         this.DEF = DEF;
+        this.linha = 2;
+        this.coluna = 2;
     }
 
     public int getATK() {
@@ -27,31 +28,66 @@ public class Jogador {
         this.DEF = DEF;
     }
 
+    public int getLinha() {
+        return this.linha;
+    }
+
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+
+    public int getColuna() {
+        return this.coluna;
+    }
+
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
+    }
+
     // metodo usado para o jogador escolher a direção que quer se movimentar
-    public void movimentar(Placar placar){
-        System.out.println("Você deseja ir para cima, direita, baixo ou esquerda? (c/d/b/e)");
+    public void movimentar(Setor setor, List<Setor> setores, Jogador jogador, List<Jogador> jogadores, Menu menu) {
+        Setor setorNovo;
+        //menu.escolherAcao(jogadores, setorNovo.getRecebeVirus());
+        System.out.println("Você deseja ir para: ");
+        if (setor.getCima() == true) {
+            System.out.println("Cima(c)");
+        }
+        if (setor.getDireita() == true) {
+            System.out.println("Direita(d)");
+        }
+        if (setor.getEsquerda() == true) {
+            System.out.println("Esquerda(e)");
+        }
+        if (setor.getBaixo() == true) {
+            System.out.println("Baixo(b)");
+        }
         char direcao = input.next().charAt(0);
-        if(direcao == 'c'){
-            placar.setCima(true);
-            System.out.println("Você foi para cima!");
-        }else if(direcao == 'd'){
-            placar.setDireita(true);
-            System.out.println("Você foi para direita!");
-        }else if(direcao == 'b'){
-            placar.setBaixo(true);
-            System.out.println("Você foi para baixo!");
-        }else if(direcao == 'e'){
-            placar.setEsquerda(true);
-            System.out.println("Você foi para esquerda!");
+        if (direcao == 'c') {
+            for (Setor set: setores) {
+                if(set.getColuna() == setor.getColuna()-1 && set.getLinha() == setor.getLinha() && set.getId() == 0){
+                    jogador.setColuna(jogador.getColuna() -1 );
+                    setor.setjogadoresPrincipal(jogadores);
+                    setorNovo = new Setor(jogadores, setor.getLinha(), setor.getColuna() - 1, 0);
+                }else{
+                    
+                }
+            }
+            new Setor(jogadores, setor.getLinha(), setor.getColuna() - 1, 7);
+        } else if (direcao == 'd') {
+            //return new Setor(jogadores, setor.getLinha() + 1, setor.getColuna());
+        } else if (direcao == 'e') {
+            //return new Setor(jogadores, setor.getLinha() - 1, setor.getColuna());
+        } else {
+            new Setor(jogadores, setor.getLinha(), setor.getColuna() + 1, 7);
         }
     }
 
     // metodo para o jogador escolher qual inimigo ele ira atacar
-    public void atacar(List<Virus> virus){
+    public void atacar(List<Virus> virus) {
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
         virus.get(inimigo - 1).setDEF(getDEF() - this.ATK);
-        if(virus.get(inimigo - 1).getDEF() <= 0){
+        if (virus.get(inimigo - 1).getDEF() <= 0) {
             virus.remove(inimigo - 1);
         }
         System.out.println("Inimigo atacado com sucesso!");
@@ -65,29 +101,28 @@ public class Jogador {
         int valor = gerador.nextInt(5) + 1;
 
         // verificando se o jogador vai encontrar alguma coisa no setor
-        if(valor >= 1 && valor <= 3){
+        if (valor >= 1 && valor <= 3) {
             System.out.println("Você não encontrou nada");
-        }else if(valor == 4){
-            jogador.setDEF(getDEF()+1);
+        } else if (valor == 4) {
+            jogador.setDEF(getDEF() + 1);
             System.out.println("Parabens, sua defesa foi aumentada em 1");
-        }else if(valor == 5){
-            jogador.setDEF(getDEF()+2);
+        } else if (valor == 5) {
+            jogador.setDEF(getDEF() + 2);
             System.out.println("Parabens, sua defesa foi aumentada em 2");
-        }else if(valor == 6){
+        } else if (valor == 6) {
             // tirar 1 de DEF dos inimigos do setor
             System.out.println("Parabens, cada inimigo perdeu 1 de defesa");
         }
     }
 
-    // Declaração do metodo de recuperar defesa para o jogador suporte poder ter acesso
-    public void recuperarDEF(List<Jogador> jogadores){}
+    // Declaração do metodo de recuperar defesa para o jogador suporte poder ter
+    // acesso
+    public void recuperarDEF(List<Jogador> jogadores) {
+    }
 
     @Override
     public String toString() {
-        return "{" +
-            " ATK='" + getATK() + "'" +
-            ", DEF='" + getDEF() + "'" +
-            "}";
+        return "{" + " ATK='" + getATK() + "'" + ", DEF='" + getDEF() + "'" + "}";
     }
 
 }
