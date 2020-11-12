@@ -13,9 +13,9 @@ public class Principal {
         x.iniciarTabuleiro();
         x.gerarCaminhoParaOrigemVirus(setores, jogadores);
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
-        /*for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 2; i++) {
             jogadores.add(menu.escolherPersonagem(i));
-        }*/
+        }
         x.mostrarTabuleiro(setores, jogadores);
         System.out.println("O jogo começou!");
         System.out.println("Vocês estão no meio do tabuleiro!");

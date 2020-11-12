@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class Jogador {
 
     private int ATK, DEF, linha, coluna;
-    
+
     Scanner input = new Scanner(System.in);
 
     // construtor para definir o ataque e a defesa do jogador
@@ -47,7 +47,8 @@ public abstract class Jogador {
     // metodo usado para o jogador escolher a direção que quer se movimentar
     public void movimentar(Setor setor, List<Setor> setores, Jogador jogador, List<Jogador> jogadores, Menu menu) {
         Setor setorNovo;
-        //menu.escolherAcao(jogadores, setorNovo.getRecebeVirus());
+        int criaNovoSetor = 0;
+        // menu.escolherAcao(jogadores, setorNovo.getRecebeVirus());
         System.out.println("Você deseja ir para: ");
         if (setor.getCima() == true) {
             System.out.println("Cima(c)");
@@ -63,20 +64,43 @@ public abstract class Jogador {
         }
         char direcao = input.next().charAt(0);
         if (direcao == 'c') {
-            for (Setor set: setores) {
-                if(set.getColuna() == setor.getColuna()-1 && set.getLinha() == setor.getLinha() && set.getId() == 0){
-                    jogador.setColuna(jogador.getColuna() -1 );
+            for (Setor seto : setores) {
+                if (seto.getColuna() == setor.getColuna() - 1 && seto.getLinha() == setor.getLinha()
+                        && seto.getId() != 0) {
+                    jogador.setColuna(jogador.getColuna() - 1);
                     setor.setjogadoresPrincipal(jogadores);
-                    setorNovo = new Setor(jogadores, setor.getLinha(), setor.getColuna() - 1, 0);
-                }else{
-                    
+                    setor.mostraSetor();
+                    menu.escolherAcao(jogadores, seto.getRecebeVirus());
+                    criaNovoSetor = 1;
                 }
             }
-            new Setor(jogadores, setor.getLinha(), setor.getColuna() - 1, 7);
+            if (criaNovoSetor == 0) {
+                jogador.setColuna(jogador.getColuna() - 1);
+                setor.setjogadoresPrincipal(jogadores);
+                setorNovo = new Setor(jogadores, setor.getLinha(), setor.getColuna() - 1, 0);
+                setores.add(setorNovo);
+                setor.mostraSetor();
+                menu.escolherAcao(jogadores, setorNovo.getRecebeVirus());
+            }
         } else if (direcao == 'd') {
-            //return new Setor(jogadores, setor.getLinha() + 1, setor.getColuna());
+            for (Setor seto : setores) {
+                setorNovo = new Setor(jogadores, setor.getLinha() + 1, setor.getColuna(), 0);
+                if (seto.getColuna() == setor.getColuna() && seto.getLinha() == setor.getLinha() + 1
+                        && seto.getId() == 0) {
+                    jogador.setLinha(jogador.getLinha() + 1);
+                    setor.setjogadoresPrincipal(jogadores);
+                    setores.add(setorNovo);
+                    menu.escolherAcao(jogadores, setorNovo.getRecebeVirus());
+                } else if (seto.getId() != 0) {
+                    jogador.setLinha(jogador.getLinha() + 1);
+                    setor.setjogadoresPrincipal(jogadores);
+                    menu.escolherAcao(jogadores, seto.getRecebeVirus());
+                }
+            }
+
+            // return new Setor(jogadores, setor.getLinha() + 1, setor.getColuna());
         } else if (direcao == 'e') {
-            //return new Setor(jogadores, setor.getLinha() - 1, setor.getColuna());
+            // return new Setor(jogadores, setor.getLinha() - 1, setor.getColuna());
         } else {
             new Setor(jogadores, setor.getLinha(), setor.getColuna() + 1, 7);
         }

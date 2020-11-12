@@ -143,7 +143,7 @@ public class Setor extends Principal {
     public void setjogadoresPrincipal(List<Jogador> jogadoresPrincipal) {   
         for (Jogador jogador : jogadoresPrincipal) {
             if(jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha){
-                jogadoresPrincipal.add(jogador);
+                this.jogadoresPrincipal.add(jogador);
             }else{
                 this.jogadoresPrincipal.remove(jogador);
             }
