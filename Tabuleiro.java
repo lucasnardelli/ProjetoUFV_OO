@@ -8,23 +8,31 @@ public class Tabuleiro {
     public char [][] tabuleiro = new char[11][21];
     public int[][] mat = new int[5][5];
     Setor setorOrigem, setorCentro, setor;
-
+    int local_linha;
+    int local_coluna;
     public Tabuleiro (){
         
     }
 
+    public int getLocalLinha (){
+        return local_linha;
+    }
+
+    public int getLocalColuna (){
+        return local_coluna;
+    }
+
     public void gerarCaminhoParaOrigemVirus(List<Setor> tabuleiro, List<Jogador> jogadores){
-        int local_linha;
-        int local_coluna;
+        
         int coluna_cont = 2;
         
         do {
             mat[2][2] = 1; //1 significa que é o centro
             local_linha = gerador.nextInt(5);
-            setorCentro = new Setor(jogadores, 2, 2, 1);
+            setorCentro = new Setor(jogadores, tabuleiro, 2, 2, 1);
             local_coluna = gerador.nextInt(5);
             mat[local_linha][local_coluna] = 2; // 2 significa que é a origem do virus
-            setorOrigem = new Setor(jogadores, local_linha, local_coluna, 2);
+            setorOrigem = new Setor(jogadores, tabuleiro, local_linha, local_coluna, 2);
 
         } while (mat[2][2] == 2);
         //(j-2) % 4 == 0 && i%2 !=0
@@ -35,25 +43,18 @@ public class Tabuleiro {
         do {
             if (local_coluna < 2) {
                 if(local_coluna != 2 && local_linha != 2){
-                    setor = new Setor(jogadores, local_linha, coluna_cont, 3);
+                    setor = new Setor(jogadores, tabuleiro, local_linha, coluna_cont, 3);
                     tabuleiro.add(setor); 
-                }  
-
-                mat[local_linha][coluna_cont] = 3; // significa que todos os lados desse setor serão abertos
+                }
                 coluna_cont--;
             } else if (local_coluna > 2) {
                 if(local_coluna != 2 && local_linha != 2){
-                    setor = new Setor(jogadores, local_linha, coluna_cont, 3);
+                    setor = new Setor(jogadores, tabuleiro, local_linha, coluna_cont, 3);
                     tabuleiro.add(setor); 
                 }  
-                        
-                mat[local_linha][coluna_cont] = 3; // significa que todos os lados desse setor serão abertos
                 coluna_cont++;
             }
-            mat[2][2] = 1;
         } while (coluna_cont != local_coluna);
-        
-        mostrarTabuleiroInt();
     }
 
     public void iniciarTabuleiro(){
@@ -81,7 +82,7 @@ public class Tabuleiro {
     |---|---|---|---|---|
     |   |   |   |   |   |
     |---|---|---|---|---|
-*/
+
     private void mostrarTabuleiroInt() {
         for (int i = 0; i < 5; i++) {
             for (int c = 0; c < 5; c++) {
@@ -89,7 +90,7 @@ public class Tabuleiro {
             }
             System.out.println();
         }
-    }
+    }*/
    
     public void mostrarTabuleiro(List<Setor> setores, List<Jogador> jogadores) {
         for(Setor set : setores){
@@ -111,7 +112,36 @@ public class Tabuleiro {
                             if(set.getEsquerda() == true){
                                 tabuleiro[i][j-2] = '*';
                             }
-                        }                        
+                        }
+                        int aux = 0;
+                        int verifica[] = new int[2];
+                        for (Jogador jogador : jogadores) {
+                            if(jogador.getLinha() == linha && jogador.getColuna() == coluna){
+                                if(linha == 2 && coluna ==2){
+                                    tabuleiro[linha*2 + 1][coluna*4 + 2]='C';
+                                }else if(jogador.getLinha() == local_linha && jogador.getColuna() == local_coluna){
+                                    tabuleiro[linha*2 + 1][coluna*4 + 2]='X';                                    
+                                }else{
+                                    verifica[aux] = 1;
+                                }
+                            }else{
+                                    tabuleiro[linha*2 + 1][coluna*4 + 2]=' ';
+                                    tabuleiro[linha*2 + 1][coluna*4 + 3]=' ';
+                            }
+                            aux++;
+                        }
+                        if(verifica[0] == 1 && verifica[1] == 1){
+                            tabuleiro[linha*2 + 1][coluna*4 + 2]='P';
+                            tabuleiro[linha*2 + 1][coluna*4 + 3]=' ';
+                        }else if(verifica[0] == 1){
+                            tabuleiro[linha*2 + 1][coluna*4 + 2]='P';
+                            tabuleiro[linha*2 + 1][coluna*4 + 3]='1';
+                        } else if(verifica[1] == 1){
+                            tabuleiro[linha*2 + 1][coluna*4 + 2]='P';
+                            tabuleiro[linha*2 + 1][coluna*4 + 3]='2';
+                        }
+                        tabuleiro[2*2 +1][2*4 + 2]='C';
+                        tabuleiro[local_linha* 2 + 1][local_coluna*4 +2]='X';
                     }
                 }
             }

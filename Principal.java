@@ -4,11 +4,14 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
+        int aux = 0;
+
         List<Jogador> jogadores = new ArrayList<>();
         Scanner input = new Scanner(System.in);
         List<Setor> setores = new ArrayList<>();
         Menu menu = new Menu();
         Tabuleiro x = new Tabuleiro();
+        Setor setorAtual = new Setor(jogadores, setores, 20, 20, 50);
 
         x.iniciarTabuleiro();
         x.gerarCaminhoParaOrigemVirus(setores, jogadores);
@@ -24,12 +27,40 @@ public class Principal {
         while (menu.getCont_Ciclos() <= 25) {
             for (Jogador jog : jogadores) {
                 for (Setor setor : setores) {
-                    if(jog.getLinha() == setor.getLinha() && jog.getColuna() == setor.getColuna()){
-                        jog.movimentar(setor, setores, jog, jogadores, menu); 
-                    }                  
-                } 
+                    if (jog.getLinha() == setor.getLinha() && jog.getColuna() == setor.getColuna()) {
+                        setorAtual = setor;
+                    }
+                }
+                jog.movimentar(setorAtual, setores, jog, jogadores);
+                if (jog.getLinha() == x.getLocalLinha() && jog.getColuna() == x.getLocalColuna()) {
+                    System.out.println("Parabens você ganhou o jogo!");
+                    System.exit(0);
+                }
+                x.mostrarTabuleiro(setores, jogadores);
+            }
+            aux = 0;
+            for (Jogador jog : jogadores) {
+                aux++;
+                for (Setor setor : setores) {
+                    if (jog.getLinha() == setor.getLinha() && jog.getColuna() == setor.getColuna()) {
+                        menu.escolherAcao(jogadores, jog, setor.getRecebeVirus(), aux);
+                    }
+
+                }
+            }
+            for (Setor setor : setores) {
+                for (Jogador jogador : jogadores) {
+                    if (jogador.getColuna() == setor.getColuna() && jogador.getLinha() == setor.getLinha()) {
+                        for (Virus virus : setor.getRecebeVirus()) {
+                            virus.atacar(setor.getjogadoresPrincipal());
+                        }
+                    }
+                }
             }
         }
+
+        System.out.println("Você atingiu o maximo de cliclos!");
+        System.out.println("GAME OVER!");
 
         input.close();
     }
