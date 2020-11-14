@@ -2,17 +2,14 @@ import java.util.List;
 import java.util.Random;
 
 public class Tabuleiro {
-    Random gerador = new Random();
-    //List<Setor> tabuleiro = new ArrayList<>();
-    //List<Jogador> jogadores = new ArrayList<>();
-    public char [][] tabuleiro = new char[11][21];
-    public int[][] mat = new int[5][5];
-    Setor setorOrigem, setorCentro, setor;
-    int local_linha;
-    int local_coluna;
-    public Tabuleiro (){
-        
-    }
+    private Random gerador = new Random();
+    private char [][] tabuleiro = new char[11][21];
+    private int[][] mat = new int[5][5];
+    private Setor setorOrigem, setorCentro, setor;
+    private int local_linha;
+    private int local_coluna;
+    
+    public Tabuleiro (){}
 
     public int getLocalLinha (){
         return local_linha;
@@ -70,27 +67,6 @@ public class Tabuleiro {
         str = "|   |   | C |   |   |";
         tabuleiro[5] = str.toCharArray();
     }
-/*
-    |---|---|---|---|---|
-    |   |   |   |   |   |
-    |---|---|---|---|---|
-    |   |   |   |   |   |
-    |---|---|---|---|---|
-    |   |   |   |   |   |
-    |---|---|---|---|---|
-    |   |   |   |   |   |
-    |---|---|---|---|---|
-    |   |   |   |   |   |
-    |---|---|---|---|---|
-
-    private void mostrarTabuleiroInt() {
-        for (int i = 0; i < 5; i++) {
-            for (int c = 0; c < 5; c++) {
-                System.out.print("\t" + mat[i][c]);
-            }
-            System.out.println();
-        }
-    }*/
    
     public void mostrarTabuleiro(List<Setor> setores, List<Jogador> jogadores) {
         for(Setor set : setores){
@@ -152,6 +128,5 @@ public class Tabuleiro {
             }
             System.out.println("");
         }
-
-}
+    }
 }

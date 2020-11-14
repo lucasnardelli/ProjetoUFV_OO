@@ -7,16 +7,20 @@ public class Setor extends Principal {
     private Boolean esquerda;
     private Boolean baixo;
     private Boolean direita;
-    private int id, linha, coluna;
+    private int id, linha, coluna, tipoSetor;
 
-    List<Jogador> jogadoresPrincipal = new ArrayList<>();
-    List<Virus> recebeoVirus = new ArrayList<>();
-    Random gerador = new Random();
-    Virus x = new Virus();
+    private List<Jogador> jogadoresPrincipal = new ArrayList<>();
+    private List<Virus> recebeoVirus = new ArrayList<>();
+    private Random gerador = new Random();
+    private Virus x = new Virus();
 
     public Setor(List<Jogador> jogadores, List<Setor> setores, int linha, int coluna, int id) {
+        recebeVirus();
         this.coluna = coluna;
         this.linha = linha;
+        this.id = id;
+        this.setTipoSetor(8);
+        //this.setTipoSetor(gerador.nextInt(10)); // 0-4 = setor normal / 5-7 = setor privado / 8-9 = setor oculto
         for (Jogador jogador : jogadores) {
             if (jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha) {
                 jogadoresPrincipal.add(jogador);
@@ -143,47 +147,29 @@ public class Setor extends Principal {
                 this.baixo = false;
             }
         }
-
+        if (id == 1) {
+            recebeoVirus.clear();
+        }
     }
 
     public Boolean getCima() {
         return this.cima;
     }
 
-    public void setCima(Boolean cima) {
-        this.cima = cima;
-    }
-
     public Boolean getEsquerda() {
         return this.esquerda;
-    }
-
-    public void setEsquerda(Boolean esquerda) {
-        this.esquerda = esquerda;
     }
 
     public Boolean getBaixo() {
         return this.baixo;
     }
 
-    public void setBaixo(Boolean baixo) {
-        this.baixo = baixo;
-    }
-
     public Boolean getDireita() {
         return this.direita;
     }
 
-    public void setDireita(Boolean direita) {
-        this.direita = direita;
-    }
-
     public int getId() {
         return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getLinha() {
@@ -192,6 +178,14 @@ public class Setor extends Principal {
 
     public int getColuna() {
         return this.coluna;
+    }
+
+    public int getTipoSetor(){
+        return this.tipoSetor;
+    }
+
+    public void setTipoSetor(int tipoSetor){
+        this.tipoSetor = tipoSetor;
     }
 
     public List<Jogador> getjogadoresPrincipal() {
@@ -213,17 +207,20 @@ public class Setor extends Principal {
         return this.recebeoVirus;
     }
 
-    public void setRecebeVirus(List<Virus> recebeVirus) {
-        this.recebeoVirus = recebeVirus;
-    }
-
     public void recebeVirus() {
-        recebeoVirus = x.geradorDeVirus();// adiciona todos os virus
+        recebeoVirus = x.geradorDeVirus(linha, coluna);// adiciona todos os virus
     }
 
     public void mostraSetor() {
-        recebeVirus();
-
+        System.out.print("Setor [" + linha + "," + coluna + "]   -   ");
+        if(this.getTipoSetor() < 5){
+            System.out.print("Setor normal");
+        }else if(this.getTipoSetor() == 5 || this.getTipoSetor() == 6 || this.getTipoSetor() == 7){
+            System.out.print("Setor privado");
+        }else if(this.getTipoSetor() == 8 || this.getTipoSetor() == 9){
+            System.out.print("Setor oculto");
+        }
+        
         System.out.println();
         for (int i = 0; i < 15; i++) {
             if (i == 7 && this.getCima() == true) {
