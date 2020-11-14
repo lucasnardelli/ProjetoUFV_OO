@@ -47,6 +47,8 @@ public class Principal {
                 }
                 
             }
+
+            
             aux = 0;
             for (Jogador jog : jogadores) {
                 aux++;
