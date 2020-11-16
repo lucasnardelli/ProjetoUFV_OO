@@ -5,10 +5,10 @@ public class Menu {
 
     private Scanner input = new Scanner(System.in);
     // atributo para fazer a contagem de quantos ciclos ja ocorreram
-    private int cont_Ciclos = 0;
+    private int contCiclos = 0;
 
-    public int getCont_Ciclos() {
-        return cont_Ciclos;
+    public int getContCiclos() {
+        return contCiclos;
     }
 
     // metodo para o jogador escolher se vai ser suporte ou simples
@@ -68,6 +68,6 @@ public class Menu {
             }
         }
 
-        cont_Ciclos++;
+        contCiclos++;
     }
 }

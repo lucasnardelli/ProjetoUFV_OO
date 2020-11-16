@@ -3,7 +3,7 @@ import java.util.List;
 
 public class JogadorSuporte extends Jogador {
 
-    Scanner input = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
 
     public JogadorSuporte() {
         super(1, 7);

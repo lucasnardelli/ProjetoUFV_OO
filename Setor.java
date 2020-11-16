@@ -3,16 +3,16 @@ import java.util.List;
 import java.util.Random;
 
 public class Setor extends Principal {
-    private Boolean cima;
-    private Boolean esquerda;
-    private Boolean baixo;
-    private Boolean direita;
+    private Boolean portaCima;
+    private Boolean portaEsquerda;
+    private Boolean portaBaixo;
+    private Boolean portaDireita;
     private int id, linha, coluna, tipoSetor;
 
-    private List<Jogador> jogadoresPrincipal = new ArrayList<>();
-    private List<Virus> recebeoVirus = new ArrayList<>();
+    private List<Jogador> jogadoresNoSetor = new ArrayList<>();
+    private List<Virus> listaDeVirus = new ArrayList<>();
     private Random gerador = new Random();
-    private Virus x = new Virus();
+    private Virus virus = new Virus();
 
     public Setor(List<Jogador> jogadores, List<Setor> setores, int linha, int coluna, int id) {
         recebeVirus();
@@ -24,7 +24,7 @@ public class Setor extends Principal {
         // privado / 8-9 = setor oculto
         for (Jogador jogador : jogadores) {
             if (jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha) {
-                jogadoresPrincipal.add(jogador);
+                jogadoresNoSetor.add(jogador);
             }
         }
         int verificaBaixo = 0, verificaCima = 0, verificaEsquerda = 0, verificaDireita = 0;
@@ -33,28 +33,28 @@ public class Setor extends Principal {
             for (Setor setor : setores) {
                 if (setor.getColuna() == this.getColuna() && setor.getLinha() == this.getLinha() + 1
                         && setor.getId() != 0) {
-                    if (setor.getCima() == true) {
+                    if (setor.getPortaCima() == true) {
                         verificaBaixo = 1;
                     } else {
                         verificaBaixo = 2;
                     }
                 } else if (setor.getColuna() == this.getColuna() && setor.getLinha() == this.getLinha() - 1
                         && setor.getId() != 0) {
-                    if (setor.getBaixo() == true) {
+                    if (setor.getPortaBaixo() == true) {
                         verificaCima = 1;
                     } else {
                         verificaCima = 2;
                     }
                 } else if (setor.getColuna() == this.getColuna() + 1 && setor.getLinha() == this.getLinha()
                         && setor.getId() != 0) {
-                    if (setor.getEsquerda() == true) {
+                    if (setor.getPortaEsquerda() == true) {
                         verificaDireita = 1;
                     } else {
                         verificaDireita = 2;
                     }
                 } else if (setor.getColuna() == this.getColuna() - 1 && setor.getLinha() == this.getLinha()
                         && setor.getId() != 0) {
-                    if (setor.getDireita() == true) {
+                    if (setor.getPortaDireita() == true) {
                         verificaEsquerda = 1;
                     } else {
                         verificaEsquerda = 2;
@@ -64,109 +64,109 @@ public class Setor extends Principal {
             // gera portas aleatorias
 
             if (verificaBaixo == 1) {
-                this.baixo = true;
+                this.portaBaixo = true;
             } else if (verificaBaixo == 2) {
-                this.baixo = false;
+                this.portaBaixo = false;
             } else {
                 int random = gerador.nextInt(3);
                 if (random == 0) {
-                    this.baixo = false;
+                    this.portaBaixo = false;
                 } else {
-                    this.baixo = true;
+                    this.portaBaixo = true;
                 }
             }
 
             if (verificaCima == 1) {
-                this.cima = true;
+                this.portaCima = true;
             } else if (verificaCima == 2) {
-                this.cima = false;
+                this.portaCima = false;
             } else {
                 int random = gerador.nextInt(3);
                 if (random == 0) {
-                    this.cima = false;
+                    this.portaCima = false;
                 } else {
-                    this.cima = true;
+                    this.portaCima = true;
                 }
             }
 
             if (verificaDireita == 1) {
-                this.direita = true;
+                this.portaDireita = true;
             } else if (verificaDireita == 2) {
-                this.direita = false;
+                this.portaDireita = false;
             } else {
                 int random = gerador.nextInt(3);
                 if (random == 0) {
-                    this.direita = false;
+                    this.portaDireita = false;
                 } else {
-                    this.direita = true;
+                    this.portaDireita = true;
                 }
             }
 
             if (verificaEsquerda == 1) {
-                this.esquerda = true;
+                this.portaEsquerda = true;
             } else if (verificaEsquerda == 2) {
-                this.esquerda = false;
+                this.portaEsquerda = false;
             } else {
                 int random = gerador.nextInt(3);
                 if (random == 0) {
-                    this.esquerda = false;
+                    this.portaEsquerda = false;
                 } else {
-                    this.esquerda = true;
+                    this.portaEsquerda = true;
                 }
             }
 
             // Coloca parede se o setor estiver em alguma extremidade
             if (this.coluna == 0) {
-                this.esquerda = false;
+                this.portaEsquerda = false;
             }
             if (this.linha == 0) {
-                this.cima = false;
+                this.portaCima = false;
             }
             if (this.coluna == 4) {
-                this.direita = false;
+                this.portaDireita = false;
             }
             if (this.linha == 4) {
-                this.baixo = false;
+                this.portaBaixo = false;
             }
         } else if (id != 0) {
-            this.baixo = true;
-            this.cima = true;
-            this.esquerda = true;
-            this.direita = true;
+            this.portaBaixo = true;
+            this.portaCima = true;
+            this.portaEsquerda = true;
+            this.portaDireita = true;
 
             // Coloca parede se o setor estiver em alguma extremidade
             if (this.coluna == 0) {
-                this.esquerda = false;
+                this.portaEsquerda = false;
             }
             if (this.linha == 0) {
-                this.cima = false;
+                this.portaCima = false;
             }
             if (this.coluna == 4) {
-                this.direita = false;
+                this.portaDireita = false;
             }
             if (this.linha == 4) {
-                this.baixo = false;
+                this.portaBaixo = false;
             }
         }
         if (id == 1) {
-            recebeoVirus.clear();
+            listaDeVirus.clear();
         }
     }
 
-    public Boolean getCima() {
-        return this.cima;
+    public Boolean getPortaCima() {
+        return this.portaCima;
     }
 
-    public Boolean getEsquerda() {
-        return this.esquerda;
+    public Boolean getPortaEsquerda() {
+        return this.portaEsquerda;
     }
 
-    public Boolean getBaixo() {
-        return this.baixo;
+    public Boolean getPortaBaixo() {
+        return this.portaBaixo;
     }
 
-    public Boolean getDireita() {
-        return this.direita;
+    public Boolean getPortaDireita() {
+        return this.portaDireita;
     }
 
     public int getId() {
@@ -190,26 +190,26 @@ public class Setor extends Principal {
     }
 
     public List<Jogador> getjogadoresPrincipal() {
-        return this.jogadoresPrincipal;
+        return this.jogadoresNoSetor;
     }
 
     public void setjogadoresPrincipal(List<Jogador> jogadoresPrincipais) {
-        this.jogadoresPrincipal.clear();
+        this.jogadoresNoSetor.clear();
         for (Jogador jogador : jogadoresPrincipais) {
             if (jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha) {
-                this.jogadoresPrincipal.add(jogador);
+                this.jogadoresNoSetor.add(jogador);
             } else {
-                this.jogadoresPrincipal.remove(jogador);
+                this.jogadoresNoSetor.remove(jogador);
             }
         }
     }
 
     public List<Virus> getRecebeVirus() {
-        return this.recebeoVirus;
+        return this.listaDeVirus;
     }
 
     public void recebeVirus() {
-        recebeoVirus = x.geradorDeVirus(linha, coluna);// adiciona todos os virus
+        listaDeVirus = virus.geradorDeVirus(linha, coluna);// adiciona todos os virus
     }
 
     public void mostraSetor() {
@@ -224,16 +224,16 @@ public class Setor extends Principal {
 
         System.out.println();
         for (int i = 0; i < 15; i++) {
-            if (i == 7 && this.getCima() == true) {
+            if (i == 7 && this.getPortaCima() == true) {
                 System.out.print("**");
             }
             System.out.print("--");
         }
         System.out.println();
-        System.out.print("|" + recebeoVirus.toString());
+        System.out.print("|" + listaDeVirus.toString());
 
         //
-        for (int i = 0; i < 5 - recebeoVirus.size(); i++) {
+        for (int i = 0; i < 5 - listaDeVirus.size(); i++) {
             // Sempre que alterar um carcter no Virus.toString alterar os espaços aqui
             System.out.print("     ");
         }
@@ -242,21 +242,21 @@ public class Setor extends Principal {
         for (int i = 0; i < 4; i++) {
             System.out.println();
             if (i == 2) {
-                if (this.getEsquerda() == true && this.getDireita() == true)
+                if (this.getPortaEsquerda() == true && this.getPortaDireita() == true)
                     System.out.print("*                              *\n");
-                else if (this.getEsquerda() == true)
+                else if (this.getPortaEsquerda() == true)
                     System.out.print("*                              |\n");
-                else if (this.getDireita() == true)
+                else if (this.getPortaDireita() == true)
                     System.out.print("|                              *\n");
 
             }
             System.out.print("|                              |");
         }
         System.out.println();
-        System.out.print("|" + jogadoresPrincipal.toString());
+        System.out.print("|" + jogadoresNoSetor.toString());
 
         //
-        for (int i = 0; i < 5 - jogadoresPrincipal.size(); i++) {
+        for (int i = 0; i < 5 - jogadoresNoSetor.size(); i++) {
             // Sempre que alterar um carcter no Virus.toString alterar os espaços aqui
             System.out.print("     ");
         }
@@ -264,7 +264,7 @@ public class Setor extends Principal {
 
         System.out.println();
         for (int i = 0; i < 15; i++) {
-            if (i == 7 && this.getBaixo() == true) {
+            if (i == 7 && this.getPortaBaixo() == true) {
                 System.out.print("**");
             }
             System.out.print("--");

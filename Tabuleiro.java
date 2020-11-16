@@ -6,18 +6,18 @@ public class Tabuleiro {
     private char[][] tabuleiro = new char[11][21];
     private int[][] mat = new int[5][5];
     private Setor setorOrigem, setorCentro, setor;
-    private int local_linha;
-    private int local_coluna;
+    private int linhaLocal;
+    private int colunaLocal;
 
     public Tabuleiro() {
     }
 
-    public int getLocalLinha() {
-        return local_linha;
+    public int getLinhaLocal() {
+        return linhaLocal;
     }
 
-    public int getLocalColuna() {
-        return local_coluna;
+    public int getColunaLocal() {
+        return colunaLocal;
     }
 
     public void gerarCaminhoParaOrigemVirus(List<Setor> tabuleiro, List<Jogador> jogadores) {
@@ -26,33 +26,33 @@ public class Tabuleiro {
 
         do {
             mat[2][2] = 1; // 1 significa que é o centro
-            local_linha = gerador.nextInt(5);
+            linhaLocal = gerador.nextInt(5);
             setorCentro = new Setor(jogadores, tabuleiro, 2, 2, 1);
-            local_coluna = gerador.nextInt(5);
-            mat[local_linha][local_coluna] = 2; // 2 significa que é a origem do virus
-            setorOrigem = new Setor(jogadores, tabuleiro, local_linha, local_coluna, 2);
+            colunaLocal = gerador.nextInt(5);
+            mat[linhaLocal][colunaLocal] = 2; // 2 significa que é a origem do virus
+            setorOrigem = new Setor(jogadores, tabuleiro, linhaLocal, colunaLocal, 2);
 
         } while (mat[2][2] == 2);
         // (j-2) % 4 == 0 && i%2 !=0
-        this.tabuleiro[(local_linha * 2) + 1][(local_coluna * 4) + 2] = 'X';
+        this.tabuleiro[(linhaLocal * 2) + 1][(colunaLocal * 4) + 2] = 'X';
         tabuleiro.add(setorCentro);
         tabuleiro.add(setorOrigem);
         // abre um caminho ate a origem do virus, para que seja possivel ganhar o jogo
         do {
-            if (local_coluna < 2) {
-                if (local_coluna != 2 && local_linha != 2) {
-                    setor = new Setor(jogadores, tabuleiro, local_linha, coluna_cont, 3);
+            if (colunaLocal < 2) {
+                if (colunaLocal != 2 && linhaLocal != 2) {
+                    setor = new Setor(jogadores, tabuleiro, linhaLocal, coluna_cont, 3);
                     tabuleiro.add(setor);
                 }
                 coluna_cont--;
-            } else if (local_coluna > 2) {
-                if (local_coluna != 2 && local_linha != 2) {
-                    setor = new Setor(jogadores, tabuleiro, local_linha, coluna_cont, 3);
+            } else if (colunaLocal > 2) {
+                if (colunaLocal != 2 && linhaLocal != 2) {
+                    setor = new Setor(jogadores, tabuleiro, linhaLocal, coluna_cont, 3);
                     tabuleiro.add(setor);
                 }
                 coluna_cont++;
             }
-        } while (coluna_cont != local_coluna);
+        } while (coluna_cont != colunaLocal);
     }
 
     public void iniciarTabuleiro() {
@@ -77,16 +77,16 @@ public class Tabuleiro {
                         int linha = i / 2;
                         int coluna = (j - 2) / 4;
                         if (set.getLinha() == linha && set.getColuna() == coluna) {
-                            if (set.getCima() == true) {
+                            if (set.getPortaCima() == true) {
                                 tabuleiro[i - 1][j] = '*';
                             }
-                            if (set.getDireita() == true) {
+                            if (set.getPortaDireita() == true) {
                                 tabuleiro[i][j + 2] = '*';
                             }
-                            if (set.getBaixo() == true) {
+                            if (set.getPortaBaixo() == true) {
                                 tabuleiro[i + 1][j] = '*';
                             }
-                            if (set.getEsquerda() == true) {
+                            if (set.getPortaEsquerda() == true) {
                                 tabuleiro[i][j - 2] = '*';
                             }
                         }
@@ -96,7 +96,7 @@ public class Tabuleiro {
                             if (jogador.getLinha() == linha && jogador.getColuna() == coluna) {
                                 if (linha == 2 && coluna == 2) {
                                     tabuleiro[linha * 2 + 1][coluna * 4 + 2] = 'C';
-                                } else if (jogador.getLinha() == local_linha && jogador.getColuna() == local_coluna) {
+                                } else if (jogador.getLinha() == linhaLocal && jogador.getColuna() == colunaLocal) {
                                     tabuleiro[linha * 2 + 1][coluna * 4 + 2] = 'X';
                                 } else {
                                     verifica[aux] = 1;
@@ -118,7 +118,7 @@ public class Tabuleiro {
                             tabuleiro[linha * 2 + 1][coluna * 4 + 3] = '2';
                         }
                         tabuleiro[2 * 2 + 1][2 * 4 + 2] = 'C';
-                        tabuleiro[local_linha * 2 + 1][local_coluna * 4 + 2] = 'X';
+                        tabuleiro[linhaLocal * 2 + 1][colunaLocal * 4 + 2] = 'X';
                     }
                 }
             }

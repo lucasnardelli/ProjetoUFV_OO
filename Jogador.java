@@ -48,23 +48,23 @@ public abstract class Jogador {
     // metodo usado para o jogador escolher a direção que quer se movimentar
     public void movimentar(Setor setor, List<Setor> setores, Jogador jogador, List<Jogador> jogadores) {
         Setor setorNovo;
-        int criaNovoSetor = 0;
+        int criarNovoSetor = 0;
         // menu.escolherAcao(jogadores, setorNovo.getRecebeVirus());
         System.out.println("Você deseja ir para: ");
-        if (setor.getCima() == true) {
+        if (setor.getPortaCima() == true) {
             System.out.println("Cima(c)");
         }
-        if (setor.getDireita() == true) {
+        if (setor.getPortaDireita() == true) {
             System.out.println("Direita(d)");
         }
-        if (setor.getEsquerda() == true) {
+        if (setor.getPortaEsquerda() == true) {
             System.out.println("Esquerda(e)");
         }
-        if (setor.getBaixo() == true) {
+        if (setor.getPortaBaixo() == true) {
             System.out.println("Baixo(b)");
         }
         char direcao = input.next().charAt(0);
-        if (direcao == 'c' && setor.getCima() == true) {
+        if (direcao == 'c' && setor.getPortaCima() == true) {
             for (Setor seto : setores) {
                 if (seto.getColuna() == setor.getColuna() && seto.getLinha() == setor.getLinha() - 1
                         && seto.getId() != 0) {
@@ -72,17 +72,17 @@ public abstract class Jogador {
                     setor.setjogadoresPrincipal(jogadores);
                     seto.setjogadoresPrincipal(jogadores);
                     seto.mostraSetor();
-                    criaNovoSetor = 1;
+                    criarNovoSetor = 1;
                 }
             }
-            if (criaNovoSetor == 0) {
+            if (criarNovoSetor == 0) {
                 jogador.setLinha(jogador.getLinha() - 1);
                 setor.setjogadoresPrincipal(jogadores);
                 setorNovo = new Setor(jogadores, setores, setor.getLinha() - 1, setor.getColuna(), 0);
                 setores.add(setorNovo);
                 setorNovo.mostraSetor();
             }
-        } else if (direcao == 'd' && setor.getDireita() == true) {
+        } else if (direcao == 'd' && setor.getPortaDireita() == true) {
             for (Setor seto : setores) {
                 if (seto.getColuna() == setor.getColuna() + 1 && seto.getLinha() == setor.getLinha()
                         && seto.getId() != 0) {
@@ -90,17 +90,17 @@ public abstract class Jogador {
                     setor.setjogadoresPrincipal(jogadores);
                     seto.setjogadoresPrincipal(jogadores);
                     seto.mostraSetor();
-                    criaNovoSetor = 1;
+                    criarNovoSetor = 1;
                 }
             }
-            if (criaNovoSetor == 0) {
+            if (criarNovoSetor == 0) {
                 jogador.setColuna(jogador.getColuna() + 1);
                 setor.setjogadoresPrincipal(jogadores);
                 setorNovo = new Setor(jogadores, setores, setor.getLinha(), setor.getColuna() + 1, 0);
                 setores.add(setorNovo);
                 setorNovo.mostraSetor();
             }
-        } else if (direcao == 'e' && setor.getEsquerda() == true) {
+        } else if (direcao == 'e' && setor.getPortaEsquerda() == true) {
             for (Setor seto : setores) {
                 if (seto.getColuna() == setor.getColuna() - 1 && seto.getLinha() == setor.getLinha()
                         && seto.getId() != 0) {
@@ -108,17 +108,17 @@ public abstract class Jogador {
                     setor.setjogadoresPrincipal(jogadores);
                     seto.setjogadoresPrincipal(jogadores);
                     seto.mostraSetor();
-                    criaNovoSetor = 1;
+                    criarNovoSetor = 1;
                 }
             }
-            if (criaNovoSetor == 0) {
+            if (criarNovoSetor == 0) {
                 jogador.setColuna(jogador.getColuna() - 1);
                 setor.setjogadoresPrincipal(jogadores);
                 setorNovo = new Setor(jogadores, setores, setor.getLinha(), setor.getColuna() - 1, 0);
                 setores.add(setorNovo);
                 setorNovo.mostraSetor();
             }
-        } else if (direcao == 'b' && setor.getBaixo() == true) {
+        } else if (direcao == 'b' && setor.getPortaBaixo() == true) {
             for (Setor seto : setores) {
                 if (seto.getColuna() == setor.getColuna() && seto.getLinha() == setor.getLinha() + 1
                         && seto.getId() != 0) {
@@ -126,10 +126,10 @@ public abstract class Jogador {
                     setor.setjogadoresPrincipal(jogadores);
                     seto.setjogadoresPrincipal(jogadores);
                     seto.mostraSetor();
-                    criaNovoSetor = 1;
+                    criarNovoSetor = 1;
                 }
             }
-            if (criaNovoSetor == 0) {
+            if (criarNovoSetor == 0) {
                 jogador.setLinha(jogador.getLinha() + 1);
                 setor.setjogadoresPrincipal(jogadores);
                 setorNovo = new Setor(jogadores, setores, setor.getLinha() + 1, setor.getColuna(), 0);
@@ -165,7 +165,6 @@ public abstract class Jogador {
                 System.out.println("virus nao encontrado ");
             }
         }
-
     }
 
     // metodo para o jogador procurar no setor que ele esta
