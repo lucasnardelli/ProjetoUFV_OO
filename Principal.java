@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
+
+
+    private static Object JogadorSimples;
+
     public static void main(String[] args) {
         int aux = 0;
 
@@ -16,9 +20,27 @@ public class Principal {
         x.iniciarTabuleiro();
         x.gerarCaminhoParaOrigemVirus(setores, jogadores);
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
-        for (int i = 1; i <= 2; i++) {
-            jogadores.add(menu.escolherPersonagem(i));
-        }
+
+
+
+            for (int i = 1; i <= 2; i++) {
+
+                jogadores.add(menu.escolherPersonagem(i));
+                if(jogadores.get(i)==JogadorSimples){
+                    jogadores.add(menu.escolherPersonagem(i));
+                }else {
+                    System.out.println("Primeiro Jogador simples");
+                    jogadores.clear();
+                    i=i-1;
+                }
+
+                }
+
+
+
+
+
+
         x.mostrarTabuleiro(setores, jogadores);
         System.out.println("O jogo começou!");
         System.out.println("Vocês estão no meio do tabuleiro!");
@@ -57,6 +79,8 @@ public class Principal {
                     }
                 }
             }
+
+
         }
 
         System.out.println("Você atingiu o maximo de cliclos!");

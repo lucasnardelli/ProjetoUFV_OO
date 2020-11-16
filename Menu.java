@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Menu {
 
-    Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);//rntrada de dados
     // atributo para fazer a contagem de quantos ciclos ja ocorreram
-    private int cont_Ciclos = 0;
+    private int cont_Ciclos = 0;//conta os ciclos
 
     public int getCont_Ciclos() {
         return cont_Ciclos;
@@ -17,15 +17,22 @@ public class Menu {
 
     // metodo para o jogador escolher se vai ser suporte ou simples
     public Jogador escolherPersonagem(int i) {
+        public Principal principal=new Principal();
         System.out.print("Player " + i + " você deseja ser suporte(1) ou simples(2)?");
         int escolha = input.nextInt();
 
-        if (escolha == 1) {
-            return new JogadorSuporte();
-        } else {
+        if (escolha == 1&&i==0) {//obedeçer a regra que jogador suporte vem depois de jogador Simples
+
             return new JogadorSimples();
+            return new JogadorSuporte();
+        } else{
+
         }
+
+
     }
+
+
 
     // metodo para o jogador escolher o que ira fazer naquele turno
     public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux) {

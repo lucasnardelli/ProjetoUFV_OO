@@ -27,8 +27,7 @@ public class Virus {
         List<Virus> virus = new ArrayList<>();// LISTA DE VIRUS TEMPORARIA
 
         do {
-            Virus tempVirus = new Virus();
-
+            Virus tempVirus = new Virus();//lista para adicionar virus aleatoriois 
             tempVirus.ATK = gerador.nextInt(3) + 1;// ATK ==DEF EM RANDOM
             tempVirus.DEF = tempVirus.ATK;// ATK ==DEF EM RANDOM
             virus.add(tempVirus);
