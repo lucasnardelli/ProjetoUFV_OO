@@ -47,27 +47,36 @@ public class Principal {
 
         // while para o jogo continuar enquanto o ciclo não chegar em 25
         while (menu.getCont_Ciclos() <= 25) {
+            aux = 0;
             for (Jogador jog : jogadores) {
+                aux++;
+                if (jog.getDEF() <= 0) {
+                    jogadores.remove(jog);
+                    System.out.println("Jogador" + aux + " morreu!");
+                }
                 for (Setor setor : setores) {
                     if (jog.getLinha() == setor.getLinha() && jog.getColuna() == setor.getColuna()) {
                         setorAtual = setor;
                     }
                 }
-                jog.movimentar(setorAtual, setores, jog, jogadores);
+                if (setorAtual.getRecebeVirus().isEmpty()) {
+                    jog.movimentar(setorAtual, setores, jog, jogadores);
+                    x.mostrarTabuleiro(setores, jogadores);
+                }
                 if (jog.getLinha() == x.getLocalLinha() && jog.getColuna() == x.getLocalColuna()) {
                     System.out.println("Parabens você ganhou o jogo!");
                     System.exit(0);
                 }
-                x.mostrarTabuleiro(setores, jogadores);
+
             }
             aux = 0;
             for (Jogador jog : jogadores) {
                 aux++;
                 for (Setor setor : setores) {
                     if (jog.getLinha() == setor.getLinha() && jog.getColuna() == setor.getColuna()) {
-                        menu.escolherAcao(jogadores, jog, setor.getRecebeVirus(), aux);
+                        menu.escolherAcao(jogadores, jog, setor.getRecebeVirus(), aux, setor);
+                        setor.mostraSetor();
                     }
-
                 }
             }
             for (Setor setor : setores) {
@@ -80,6 +89,8 @@ public class Principal {
                 }
             }
 
+            if (jogadores.isEmpty())
+                System.exit(0);
 
         }
 

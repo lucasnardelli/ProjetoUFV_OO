@@ -6,7 +6,8 @@ public abstract class Jogador {
 
     private int ATK, DEF, linha, coluna;
 
-    Scanner input = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
+    private Random gerador = new Random();
 
     // construtor para definir o ataque e a defesa do jogador
     public Jogador(int ATK, int DEF) {
@@ -142,23 +143,35 @@ public abstract class Jogador {
     }
 
     // metodo para o jogador escolher qual inimigo ele ira atacar
-    public void atacar(List<Virus> virus) {
+    public void atacar(List<Virus> virus, Setor setor) {
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
-        virus.get(inimigo - 1).setDEF(getDEF() - this.ATK);
-        if (virus.get(inimigo - 1).getDEF() <= 0) {
-            virus.remove(inimigo - 1);
+        if (setor.getTipoSetor() < 5) { // setor normal
+            virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
+            if (virus.get(inimigo - 1).getDEF() <= 0) {
+                virus.remove(inimigo - 1);
+                System.out.println("Inimigo eliminado");
+            }
+            System.out.println("Inimigo atacado com sucesso!");
+        } else if (setor.getTipoSetor() == 8 || setor.getTipoSetor() == 9) { // setor oculto
+            if (gerador.nextInt(4) != 0) {
+                virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
+                if (virus.get(inimigo - 1).getDEF() <= 0) {
+                    virus.remove(inimigo - 1);
+                    System.out.println("Inimigo Eliminado");
+                }
+                System.out.println("Inimigo atacado com sucesso!");
+            } else {
+                System.out.println("virus nao encontrado ");
+            }
         }
-        System.out.println("Inimigo atacado com sucesso!");
+
     }
 
     // metodo para o jogador procurar no setor que ele esta
     public void procurar(Jogador jogador) {
-        Random gerador = new Random();
-
         // variavel para armazenar um valor aleatorio de 1 a 6
         int valor = gerador.nextInt(5) + 1;
-
         // verificando se o jogador vai encontrar alguma coisa no setor
         if (valor >= 1 && valor <= 3) {
             System.out.println("Você não encontrou nada");
