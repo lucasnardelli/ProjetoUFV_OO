@@ -8,6 +8,7 @@ public abstract class Jogador {
 
     private Scanner input = new Scanner(System.in);
     private Random gerador = new Random();
+
     // construtor para definir o ataque e a defesa do jogador
     public Jogador(int ATK, int DEF) {
         this.ATK = ATK;
@@ -145,26 +146,26 @@ public abstract class Jogador {
     public void atacar(List<Virus> virus, Setor setor) {
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
-        if(setor.getTipoSetor() < 5){ // setor normal
-            virus.get(inimigo -1).setDEF(virus.get(inimigo -1).getDEF() - this.ATK);
+        if (setor.getTipoSetor() < 5) { // setor normal
+            virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
             if (virus.get(inimigo - 1).getDEF() <= 0) {
                 virus.remove(inimigo - 1);
                 System.out.println("Inimigo eliminado");
             }
             System.out.println("Inimigo atacado com sucesso!");
-        } else if(setor.getTipoSetor() == 8 || setor.getTipoSetor() == 9){ // setor oculto
-            if(gerador.nextInt(4)!=0){
-                virus.get(inimigo - 1).setDEF(virus.get(inimigo -1).getDEF() - this.ATK);
+        } else if (setor.getTipoSetor() == 8 || setor.getTipoSetor() == 9) { // setor oculto
+            if (gerador.nextInt(4) != 0) {
+                virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
                 if (virus.get(inimigo - 1).getDEF() <= 0) {
                     virus.remove(inimigo - 1);
                     System.out.println("Inimigo Eliminado");
                 }
                 System.out.println("Inimigo atacado com sucesso!");
-            }else {
+            } else {
                 System.out.println("virus nao encontrado ");
             }
         }
-        
+
     }
 
     // metodo para o jogador procurar no setor que ele esta

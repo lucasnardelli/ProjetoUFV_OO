@@ -20,7 +20,8 @@ public class Setor extends Principal {
         this.linha = linha;
         this.id = id;
         this.setTipoSetor(8);
-        //this.setTipoSetor(gerador.nextInt(10)); // 0-4 = setor normal / 5-7 = setor privado / 8-9 = setor oculto
+        // this.setTipoSetor(gerador.nextInt(10)); // 0-4 = setor normal / 5-7 = setor
+        // privado / 8-9 = setor oculto
         for (Jogador jogador : jogadores) {
             if (jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha) {
                 jogadoresPrincipal.add(jogador);
@@ -180,11 +181,11 @@ public class Setor extends Principal {
         return this.coluna;
     }
 
-    public int getTipoSetor(){
+    public int getTipoSetor() {
         return this.tipoSetor;
     }
 
-    public void setTipoSetor(int tipoSetor){
+    public void setTipoSetor(int tipoSetor) {
         this.tipoSetor = tipoSetor;
     }
 
@@ -213,14 +214,14 @@ public class Setor extends Principal {
 
     public void mostraSetor() {
         System.out.print("Setor [" + linha + "," + coluna + "]   -   ");
-        if(this.getTipoSetor() < 5){
+        if (this.getTipoSetor() < 5) {
             System.out.print("Setor normal");
-        }else if(this.getTipoSetor() == 5 || this.getTipoSetor() == 6 || this.getTipoSetor() == 7){
+        } else if (this.getTipoSetor() == 5 || this.getTipoSetor() == 6 || this.getTipoSetor() == 7) {
             System.out.print("Setor privado");
-        }else if(this.getTipoSetor() == 8 || this.getTipoSetor() == 9){
+        } else if (this.getTipoSetor() == 8 || this.getTipoSetor() == 9) {
             System.out.print("Setor oculto");
         }
-        
+
         System.out.println();
         for (int i = 0; i < 15; i++) {
             if (i == 7 && this.getCima() == true) {
@@ -270,5 +271,4 @@ public class Setor extends Principal {
         }
         System.out.println();
     }
-
 }

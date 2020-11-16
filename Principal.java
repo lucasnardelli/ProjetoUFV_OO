@@ -25,7 +25,7 @@ public class Principal {
 
         // while para o jogo continuar enquanto o ciclo não chegar em 25
         while (menu.getCont_Ciclos() <= 25) {
-            aux=0;
+            aux = 0;
             for (Jogador jog : jogadores) {
                 aux++;
                 if (jog.getDEF() <= 0) {
@@ -37,7 +37,7 @@ public class Principal {
                         setorAtual = setor;
                     }
                 }
-                if(setorAtual.getRecebeVirus().isEmpty()){
+                if (setorAtual.getRecebeVirus().isEmpty()) {
                     jog.movimentar(setorAtual, setores, jog, jogadores);
                     x.mostrarTabuleiro(setores, jogadores);
                 }
@@ -45,10 +45,8 @@ public class Principal {
                     System.out.println("Parabens você ganhou o jogo!");
                     System.exit(0);
                 }
-                
-            }
 
-            
+            }
             aux = 0;
             for (Jogador jog : jogadores) {
                 aux++;
@@ -64,11 +62,12 @@ public class Principal {
                     if (jogador.getColuna() == setor.getColuna() && jogador.getLinha() == setor.getLinha()) {
                         for (Virus virus : setor.getRecebeVirus()) {
                             virus.atacar(setor.getjogadoresPrincipal());
-                        }  
+                        }
                     }
                 }
             }
-            if(jogadores.isEmpty()) System.exit(0);
+            if (jogadores.isEmpty())
+                System.exit(0);
         }
 
         System.out.println("Você atingiu o maximo de cliclos!");

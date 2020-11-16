@@ -23,36 +23,29 @@ public class Virus {
     }
 
     public List<Virus> geradorDeVirus(int linha, int coluna) {// RETORNA UMA LISTA
-
         List<Virus> virus = new ArrayList<>();// LISTA DE VIRUS TEMPORARIA
-        if(linha !=2 && coluna !=2){
+        if (linha != 2 && coluna != 2) {
             do {
                 Virus tempVirus = new Virus();
-    
                 tempVirus.ATK = gerador.nextInt(3) + 1;// ATK ==DEF EM RANDOM
                 tempVirus.DEF = tempVirus.ATK;// ATK ==DEF EM RANDOM
                 virus.add(tempVirus);
-    
                 tamanho_vet--;
             } while (tamanho_vet > 0);// SO TERMINA QUANDO TODOS OS VIRUS SAO ADD
-    
             return virus;// RETORNA LISTA DE VIRUS GERADOS
-        }else{
+        } else {
             return null;
         }
-        
-
     }
 
     public void atacar(List<Jogador> jogadores) {
         int alvo = gerador.nextInt(jogadores.size());
         int aleatorio = gerador.nextInt(7);
-        if(aleatorio < 2){
+        if (aleatorio < 2) {
             jogadores.get(alvo).setDEF(jogadores.get(alvo).getDEF() - this.ATK);
-        }else {
+        } else {
             System.out.println("Virus errou o ataque");
         }
-        
     }
 
     @Override
