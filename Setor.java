@@ -19,7 +19,7 @@ public class Setor extends Principal {
         this.coluna = coluna;
         this.linha = linha;
         this.id = id;
-        this.setTipoSetor(8);
+        this.setTipoSetor(gerador.nextInt(10));
         // this.setTipoSetor(gerador.nextInt(10)); // 0-4 = setor normal / 5-7 = setor
         // privado / 8-9 = setor oculto
         for (Jogador jogador : jogadores) {
@@ -235,9 +235,18 @@ public class Setor extends Principal {
         //
         for (int i = 0; i < 5 - listaDeVirus.size(); i++) {
             // Sempre que alterar um carcter no Virus.toString alterar os espaços aqui
-            System.out.print("     ");
+            if(listaDeVirus.isEmpty()){
+                System.out.print("    ");
+            }else{
+                System.out.print("     ");
+            }   
         }
-        System.out.print("     |");
+        if(listaDeVirus.isEmpty()){
+            System.out.print("        |");
+        }else{
+            System.out.print("     |");
+        }
+        
 
         for (int i = 0; i < 4; i++) {
             System.out.println();

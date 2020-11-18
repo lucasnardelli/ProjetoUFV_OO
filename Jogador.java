@@ -164,6 +164,13 @@ public abstract class Jogador {
             } else {
                 System.out.println("virus nao encontrado ");
             }
+        } else {
+            virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
+            if (virus.get(inimigo - 1).getDEF() <= 0) {
+                virus.remove(inimigo - 1);
+                System.out.println("Inimigo eliminado");
+            }
+            System.out.println("Inimigo atacado com sucesso!");
         }
     }
 

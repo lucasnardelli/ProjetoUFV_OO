@@ -24,6 +24,7 @@ public class Virus {
 
     public List<Virus> geradorDeVirus(int linha, int coluna) {// RETORNA UMA LISTA
         List<Virus> virus = new ArrayList<>();// LISTA DE VIRUS TEMPORARIA
+
         if (linha != 2 && coluna != 2) {
             do {
                 Virus tempVirus = new Virus();
@@ -36,6 +37,7 @@ public class Virus {
         } else {
             return null;
         }
+
     }
 
     public void atacar(List<Jogador> jogadores) {
