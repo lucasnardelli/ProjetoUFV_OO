@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Jogador {
+public abstract class Jogador  {
 
     private int ATK, DEF, linha, coluna;
 
@@ -146,6 +146,12 @@ public abstract class Jogador {
     public void atacar(List<Virus> virus, Setor setor) {
         System.out.print("Qual inimigo você deseja atacar?");
         int inimigo = input.nextInt();
+        if((inimigo-1)>virus.size()-1){
+
+            System.out.println("valor invalido");
+            System.exit(1);
+
+        }
         if (setor.getTipoSetor() < 5) { // setor normal
             virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
             if (virus.get(inimigo - 1).getDEF() <= 0) {

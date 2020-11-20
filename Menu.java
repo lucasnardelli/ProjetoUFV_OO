@@ -1,7 +1,10 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
 
 public class Menu {
+
+
 
     private Scanner input = new Scanner(System.in);// rntrada de dados
 
@@ -11,9 +14,18 @@ public class Menu {
     public int getContCiclos() {
         return contCiclos;
     }
+    void erro() {
+
+throw new InputMismatchException();
+
+
+
+    }
+
+
 
     // metodo para o jogador escolher se vai ser suporte ou simples
-    public Jogador escolherPersonagem(int i) {
+    public Jogador escolherPersonagem(int i) throws InputMismatchException {
         System.out.print("Player " + i + " você deseja ser suporte(1) ou simples(2)?");
         int escolha = input.nextInt();
         if (escolha == 1) {// obedeçer a regra que jogador suporte vem depois de jogador Simples
@@ -24,7 +36,7 @@ public class Menu {
     }
 
     // metodo para o jogador escolher o que ira fazer naquele turno
-    public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux, Setor setor) {
+    public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux, Setor setor)throws Exception {
         for (int i = 1; i < 3; i++) {
             setor.mostraSetor();
             // verifica se o jogador é suporte

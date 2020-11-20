@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception {
         int aux = 0;
 
         List<Jogador> jogadores = new ArrayList<>();
@@ -15,10 +16,29 @@ public class Principal {
 
         tabuleiro.iniciarTabuleiro();
         tabuleiro.gerarCaminhoParaOrigemVirus(setores, jogadores);
+
         // for para os jogadores escolherem qual tipo de jogador eles vão ser
         for (int i = 1; i <= 2; i++) {
             if(jogadores.isEmpty()){ // se a lista estiver vazia o jogador pode escolher seu personagem
+
+            try {
                 jogadores.add(menu.escolherPersonagem(i));
+
+            }catch (InputMismatchException z)
+            {
+                System.out.println("PPPP");
+                System.out.println("Digito errado");
+                System.out.println(z.getMessage());
+                System.exit(1);
+            }
+            catch (Exception ex)
+            {
+                System.out.println("ocorreu um erro");
+                System.out.println(ex.getMessage());
+                System.exit(1);
+            }
+
+
             } else {
                 System.out.println(i);
                 if(jogadores.get(i-2).getATK() == 1){  // se o primeiro jogador escolher suporte o segundo player tem que ser simples
@@ -61,7 +81,6 @@ public class Principal {
                     System.out.println("Parabens você ganhou o jogo!");
                     System.exit(0);
                 }
-
             }
             aux = 0;
             for (Jogador jog : jogadores) {
