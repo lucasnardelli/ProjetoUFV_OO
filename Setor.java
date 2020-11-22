@@ -34,28 +34,28 @@ public class Setor extends Principal {
             for (Setor setor : setores) {
                 if (setor.getColuna() == this.getColuna() && setor.getLinha() == this.getLinha() + 1
                         && setor.getId() != 0) {
-                    if (setor.getPortaCima() == true) {
+                    if (setor.getPortaCima()) {//ja retorna true
                         verificaBaixo = 1;
                     } else {
                         verificaBaixo = 2;
                     }
                 } else if (setor.getColuna() == this.getColuna() && setor.getLinha() == this.getLinha() - 1
                         && setor.getId() != 0) {
-                    if (setor.getPortaBaixo() == true) {
+                    if (setor.getPortaBaixo()) {//ja retorna true
                         verificaCima = 1;
                     } else {
                         verificaCima = 2;
                     }
                 } else if (setor.getColuna() == this.getColuna() + 1 && setor.getLinha() == this.getLinha()
                         && setor.getId() != 0) {
-                    if (setor.getPortaEsquerda() == true) {
+                    if (setor.getPortaEsquerda()) {//ja retorna true
                         verificaDireita = 1;
                     } else {
                         verificaDireita = 2;
                     }
                 } else if (setor.getColuna() == this.getColuna() - 1 && setor.getLinha() == this.getLinha()
                         && setor.getId() != 0) {
-                    if (setor.getPortaDireita() == true) {
+                    if (setor.getPortaDireita()) {//ja retorna true
                         verificaEsquerda = 1;
                     } else {
                         verificaEsquerda = 2;
@@ -129,7 +129,7 @@ public class Setor extends Principal {
             if (this.linha == 4) {
                 this.portaBaixo = false;
             }
-        } else if (id != 0) {
+        } else {
             this.portaBaixo = true;
             this.portaCima = true;
             this.portaEsquerda = true;
@@ -233,7 +233,7 @@ public class Setor extends Principal {
 
         System.out.println();
         for (int i = 0; i < 15; i++) {
-            if (i == 7 && this.getPortaCima() == true) {
+            if (i == 7 && this.getPortaCima()) {//ja retorna true
                 System.out.print("**");
             }
             System.out.print("--");
@@ -260,11 +260,11 @@ public class Setor extends Principal {
         for (int i = 0; i < 4; i++) {
             System.out.println();
             if (i == 2) {
-                if (this.getPortaEsquerda() == true && this.getPortaDireita() == true)
+                if (this.getPortaEsquerda() && this.getPortaDireita())//ja retorna true
                     System.out.print("*                              *\n");
-                else if (this.getPortaEsquerda() == true)
+                else if (this.getPortaEsquerda())//ja retorna true
                     System.out.print("*                              |\n");
-                else if (this.getPortaDireita() == true)
+                else if (this.getPortaDireita())//ja retorna true
                     System.out.print("|                              *\n");
 
             }
@@ -282,7 +282,7 @@ public class Setor extends Principal {
 
         System.out.println();
         for (int i = 0; i < 15; i++) {
-            if (i == 7 && this.getPortaBaixo() == true) {
+            if (i == 7 && this.getPortaBaixo()) {//ja retorna true
                 System.out.print("**");
             }
             System.out.print("--");

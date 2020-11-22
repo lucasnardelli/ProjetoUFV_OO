@@ -49,9 +49,8 @@ public abstract class Jogador  {
     public void movimentar(Setor setor, List<Setor> setores, Jogador jogador, List<Jogador> jogadores) {
         int criarNovoSetor = 0;
         System.out.println(direcoesPossiveis(setor));
-        char direcao = input.next().charAt(0);
-
-        if (direcao == 'c' && setor.getPortaCima() == true) {
+        char direcao = input.next().charAt(0);//pega a letra do usuario
+        if (direcao == 'c' && setor.getPortaCima()) {
             for (Setor setorAtual : setores) {
                 if (setorAtual.getColuna() == setor.getColuna() && setorAtual.getLinha() == setor.getLinha() - 1
                         && setorAtual.getId() != 0) {
@@ -63,7 +62,7 @@ public abstract class Jogador  {
             if (criarNovoSetor == 0) {
                 criarNovoSetor(setor, setores, jogadores, jogador, setor.getLinha() - 1, setor.getColuna());
             }
-        } else if (direcao == 'd' && setor.getPortaDireita() == true) {
+        } else if (direcao == 'd' && setor.getPortaDireita()) {
             for (Setor setorAtual : setores) {
                 if (setorAtual.getColuna() == setor.getColuna() + 1 && setorAtual.getLinha() == setor.getLinha()
                         && setorAtual.getId() != 0) {
@@ -75,7 +74,7 @@ public abstract class Jogador  {
             if (criarNovoSetor == 0) {
                 criarNovoSetor(setor, setores, jogadores, jogador, setor.getLinha(), setor.getColuna() + 1);
             }
-        } else if (direcao == 'e' && setor.getPortaEsquerda() == true) {
+        } else if (direcao == 'e' && setor.getPortaEsquerda()) {
             for (Setor setorAtual : setores) {
                 if (setorAtual.getColuna() == setor.getColuna() - 1 && setorAtual.getLinha() == setor.getLinha()
                         && setorAtual.getId() != 0) {
@@ -87,7 +86,7 @@ public abstract class Jogador  {
             if (criarNovoSetor == 0) {
                 criarNovoSetor(setor, setores, jogadores, jogador, setor.getLinha(), setor.getColuna() - 1);
             }
-        } else if (direcao == 'b' && setor.getPortaBaixo() == true) {
+        } else if (direcao == 'b' && setor.getPortaBaixo()) {
             for (Setor setorAtual : setores) {
                 if (setorAtual.getColuna() == setor.getColuna() && setorAtual.getLinha() == setor.getLinha() + 1
                         && setorAtual.getId() != 0) {
@@ -100,7 +99,7 @@ public abstract class Jogador  {
                 criarNovoSetor(setor, setores, jogadores, jogador, setor.getLinha() + 1, setor.getColuna());
             }
         } else {
-            throw new AllException("Valor invalido");
+            throw new AllException("Valor invalido");//caso o jogador errar o comando
         }
     }
 
@@ -135,8 +134,10 @@ public abstract class Jogador  {
     public void procurar(Jogador jogador, List<Virus> virus) {
         // variavel para armazenar um valor aleatorio de 1 a 6
         int valor = gerador.nextInt(6) + 1;
+        int[] mat = new int[5];
+        int aux = 0;
         // verificando se o jogador vai encontrar alguma coisa no setor
-        if (valor >= 1 && valor <= 3) {
+        if (valor <= 3) {
             System.out.println("Você não encontrou nada");
         } else if (valor == 4) {
             jogador.setDEF(getDEF() + 1);
@@ -144,9 +145,7 @@ public abstract class Jogador  {
         } else if (valor == 5) {
             jogador.setDEF(getDEF() + 2);
             System.out.println("Parabens, sua defesa foi aumentada em 2");
-        } else if (valor == 6) {
-            int[] mat = new int[5];
-            int aux = 0;
+        } else {
             for (Virus vir : virus) {
                 // tirar 1 de DEF dos inimigos do setor
                 vir.setDEF(vir.getDEF() - 1);
@@ -203,19 +202,19 @@ public abstract class Jogador  {
 
     public String direcoesPossiveis(Setor setor) {
         String str = "Você deseja ir para: ";
-        if (setor.getPortaCima() == true) {
+        if (setor.getPortaCima()) {//retorna true
             str = str.concat(" Cima(c)");
         }
-        if (setor.getPortaDireita() == true) {
+        if (setor.getPortaDireita()) {//retorna true
             str = str.concat(" Direita(d)");
         }
-        if (setor.getPortaEsquerda() == true) {
+        if (setor.getPortaEsquerda()) {//retorna true
             str = str.concat(" Esquerda(e)");
         }
-        if (setor.getPortaBaixo() == true) {
+        if (setor.getPortaBaixo()) {//retorna true
             str = str.concat(" Baixo(b)");
         }
-        str = str.concat(" ?");
+        str = str.concat(" ?");//so pra colocar a interrogaçao
         return str;
     }
 

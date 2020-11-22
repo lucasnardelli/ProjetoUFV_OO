@@ -9,6 +9,7 @@ public class Tabuleiro {
     private int linhaLocal;
     private int colunaLocal;
 
+
     public Tabuleiro() {
     }
 
@@ -22,7 +23,7 @@ public class Tabuleiro {
 
     public void gerarCaminhoParaOrigemVirus(List<Setor> tabuleiro, List<Jogador> jogadores) {
 
-        int coluna_cont = 2;
+        int colunaCont = 2;
 
         do {
             mat[2][2] = 1; // 1 significa que é o centro
@@ -41,19 +42,19 @@ public class Tabuleiro {
         // abre um caminho ate a origem do virus, para que seja possivel ganhar o jogo
         do {
             if (colunaLocal < 2) {
-                if (colunaLocal != 2 && linhaLocal != 2) {
-                    setor = new Setor(jogadores, tabuleiro, linhaLocal, coluna_cont, 3);
+                if (linhaLocal != 2) {
+                    setor = new Setor(jogadores, tabuleiro, linhaLocal, colunaCont, 3);
                     tabuleiro.add(setor);
                 }
-                coluna_cont--;
+                colunaCont--;
             } else if (colunaLocal > 2) {
-                if (colunaLocal != 2 && linhaLocal != 2) {
-                    setor = new Setor(jogadores, tabuleiro, linhaLocal, coluna_cont, 3);
+                if (linhaLocal != 2) {
+                    setor = new Setor(jogadores, tabuleiro, linhaLocal, colunaCont, 3);
                     tabuleiro.add(setor);
                 }
-                coluna_cont++;
+                colunaCont++;
             }
-        } while (coluna_cont != colunaLocal);
+        } while (colunaCont != colunaLocal);
     }
 
     public void iniciarTabuleiro() {
@@ -71,6 +72,8 @@ public class Tabuleiro {
     }
 
     public void mostrarTabuleiro(List<Setor> setores, List<Jogador> jogadores) {
+        int aux = 0;
+        int verifica[] = new int[2];
         for (Setor set : setores) {
             for (int i = 0; i < 11; i++) {
                 for (int j = 0; j < 21; j++) {
@@ -78,21 +81,20 @@ public class Tabuleiro {
                         int linha = i / 2;
                         int coluna = (j - 2) / 4;
                         if (set.getLinha() == linha && set.getColuna() == coluna) {
-                            if (set.getPortaCima() == true && set.getJogadorPassou() == true) {
+                            if (set.getPortaCima() && set.getJogadorPassou()) {//retorna true
                                 tabuleiro[i - 1][j] = '*';
                             }
-                            if (set.getPortaDireita() == true && set.getJogadorPassou() == true) {
+                            if (set.getPortaDireita() && set.getJogadorPassou()) {//retorna true
                                 tabuleiro[i][j + 2] = '*';
                             }
-                            if (set.getPortaBaixo() == true && set.getJogadorPassou() == true) {
+                            if (set.getPortaBaixo() && set.getJogadorPassou()) {//retorna true
                                 tabuleiro[i + 1][j] = '*';
                             }
-                            if (set.getPortaEsquerda() == true && set.getJogadorPassou() == true) {
+                            if (set.getPortaEsquerda() && set.getJogadorPassou()) {//retorna true
                                 tabuleiro[i][j - 2] = '*';
                             }
                         }
-                        int aux = 0;
-                        int verifica[] = new int[2];
+
                         for (Jogador jogador : jogadores) {
                             if (jogador.getLinha() == linha && jogador.getColuna() == coluna) {
                                 if (linha == 2 && coluna == 2) {

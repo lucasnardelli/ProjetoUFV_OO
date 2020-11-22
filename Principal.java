@@ -9,13 +9,10 @@ public class Principal {
             int aux;
             List<Setor> setores = new ArrayList<>();
             List<Jogador> jogadores = new ArrayList<>();
-            
             Scanner input = new Scanner(System.in);
             Menu menu = new Menu();
             Tabuleiro tabuleiro = new Tabuleiro();
             Setor setorAtual = new Setor(jogadores, setores, 20, 20, 50);
-
-
             tabuleiro.iniciarTabuleiro();
             tabuleiro.gerarCaminhoParaOrigemVirus(setores, jogadores);
             // for para os jogadores escolherem qual tipo de jogador eles vão ser
@@ -31,11 +28,9 @@ public class Principal {
                     }
                 } 
             }
-            
             System.out.println("O jogo começou!");
             System.out.println("Vocês estão no meio do tabuleiro!");
-            
-    
+
             // while para o jogo continuar enquanto o ciclo não chegar em 25
             while (menu.getContCiclos() <= 25) {
                 aux = 0;
@@ -97,9 +92,10 @@ public class Principal {
     
             System.out.println("Você atingiu o maximo de cliclos!");
             System.out.println("GAME OVER!");
-            System.exit(0);
-    
             input.close();
+            System.exit(0);//sair do progama
+    
+
         } catch(AllException e){
             System.out.println("Erro: " + e.getMessage());
         }catch (InputMismatchException e){
