@@ -1,7 +1,8 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
 
-public class JogadorSuporte extends Jogador {
+public class JogadorSuporte extends Jogador  {
 
     private Scanner input = new Scanner(System.in);
 
@@ -10,8 +11,10 @@ public class JogadorSuporte extends Jogador {
     }
 
     // metodo sobrescrito para escolher de quem ira recuperar a defesa
+
+
     @Override
-    public void recuperarDEF(List<Jogador> jogadores) {
+    public void recuperarDEF(List<Jogador> jogadores)throws InputMismatchException {
         System.out.print("Você deseja recuperar a defesa de qual jogador(1 ou 2)?");
         int jogador = input.nextInt();
         if(jogador > jogadores.size() || jogador < 0){

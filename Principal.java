@@ -7,15 +7,14 @@ public class Principal {
     public static void main(String[] args) {
         try{
             int aux;
-
             List<Setor> setores = new ArrayList<>();
             List<Jogador> jogadores = new ArrayList<>();
             
             Scanner input = new Scanner(System.in);
             Menu menu = new Menu();
             Tabuleiro tabuleiro = new Tabuleiro();
-
             Setor setorAtual = new Setor(jogadores, setores, 20, 20, 50);
+
 
             tabuleiro.iniciarTabuleiro();
             tabuleiro.gerarCaminhoParaOrigemVirus(setores, jogadores);
@@ -59,6 +58,7 @@ public class Principal {
                     if (setorAtual.getRecebeVirus().isEmpty()) {
                         tabuleiro.mostrarTabuleiro(setores, jogadores);
                         jog.movimentar(setorAtual, setores, jog, jogadores);
+
                     }
                     if (jog.getLinha() == tabuleiro.getLinhaLocal() && jog.getColuna() == tabuleiro.getColunaLocal()) {
                         System.out.println("Parabens você ganhou o jogo!");

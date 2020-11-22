@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Jogador {
+public abstract class Jogador  {
 
     private int ATK, DEF, linha, coluna;
 

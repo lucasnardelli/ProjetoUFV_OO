@@ -2,19 +2,17 @@ import java.util.Scanner;
 import java.util.List;
 
 public class Menu {
-
     private Scanner input = new Scanner(System.in);
-
     // atributo para fazer a contagem de quantos ciclos ja ocorreram
     private int contCiclos = 0;
 
     public int getContCiclos() {
         return contCiclos;
     }
-
     // metodo para o jogador escolher se vai ser suporte ou simples
     public Jogador escolherPersonagem(int i){
         System.out.print("Player " + i + " você deseja ser suporte(1) ou simples(2):");
+
         int escolha = input.nextInt();
         if(escolha != 1 && escolha !=2 ){
             throw new AllException("Esse tipo de jogador não existe!");
@@ -27,7 +25,7 @@ public class Menu {
     }
 
     // metodo para o jogador escolher o que ira fazer naquele turno
-    public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux, Setor setor) {
+    public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux, Setor setor)throws Exception {
         for (int i = 1; i < 3; i++) {
             setor.mostraSetor();
             // verifica se o jogador é suporte
