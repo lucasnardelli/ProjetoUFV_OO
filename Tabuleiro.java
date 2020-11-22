@@ -35,6 +35,7 @@ public class Tabuleiro {
         } while (mat[2][2] == 2);
         // (j-2) % 4 == 0 && i%2 !=0
         this.tabuleiro[(linhaLocal * 2) + 1][(colunaLocal * 4) + 2] = 'X';
+        setorCentro.setJogadorPassou(true);
         tabuleiro.add(setorCentro);
         tabuleiro.add(setorOrigem);
         // abre um caminho ate a origem do virus, para que seja possivel ganhar o jogo
@@ -77,16 +78,16 @@ public class Tabuleiro {
                         int linha = i / 2;
                         int coluna = (j - 2) / 4;
                         if (set.getLinha() == linha && set.getColuna() == coluna) {
-                            if (set.getPortaCima() == true) {
+                            if (set.getPortaCima() == true && set.getJogadorPassou() == true) {
                                 tabuleiro[i - 1][j] = '*';
                             }
-                            if (set.getPortaDireita() == true) {
+                            if (set.getPortaDireita() == true && set.getJogadorPassou() == true) {
                                 tabuleiro[i][j + 2] = '*';
                             }
-                            if (set.getPortaBaixo() == true) {
+                            if (set.getPortaBaixo() == true && set.getJogadorPassou() == true) {
                                 tabuleiro[i + 1][j] = '*';
                             }
-                            if (set.getPortaEsquerda() == true) {
+                            if (set.getPortaEsquerda() == true && set.getJogadorPassou() == true) {
                                 tabuleiro[i][j - 2] = '*';
                             }
                         }

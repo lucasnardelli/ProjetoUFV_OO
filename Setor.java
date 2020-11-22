@@ -7,6 +7,7 @@ public class Setor extends Principal {
     private Boolean portaEsquerda;
     private Boolean portaBaixo;
     private Boolean portaDireita;
+    private Boolean JogadorPassou;
     private int id, linha, coluna, tipoSetor;
 
     private List<Jogador> jogadoresNoSetor = new ArrayList<>();
@@ -16,12 +17,12 @@ public class Setor extends Principal {
 
     public Setor(List<Jogador> jogadores, List<Setor> setores, int linha, int coluna, int id) {
         recebeVirus();
+        
         this.coluna = coluna;
         this.linha = linha;
         this.id = id;
-        this.setTipoSetor(gerador.nextInt(10));
-        // this.setTipoSetor(gerador.nextInt(10)); // 0-4 = setor normal / 5-7 = setor
-        // privado / 8-9 = setor oculto
+        this.JogadorPassou = false;
+        this.setTipoSetor(gerador.nextInt(10));// 0-4 = setor normal / 5-7 = setor// privado / 8-9 = setor oculto
         for (Jogador jogador : jogadores) {
             if (jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha) {
                 jogadoresNoSetor.add(jogador);
@@ -169,6 +170,14 @@ public class Setor extends Principal {
         return this.portaDireita;
     }
 
+    public Boolean getJogadorPassou() {
+        return this.JogadorPassou;
+    }
+
+    public void setJogadorPassou(Boolean jogadorPassou){
+        this.JogadorPassou = jogadorPassou;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -279,5 +288,29 @@ public class Setor extends Principal {
             System.out.print("--");
         }
         System.out.println();
+    }
+
+    public Boolean verificaSetorNormal(){
+        if(this.tipoSetor<5){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Boolean verificaSetorPrivado(){
+        if(this.tipoSetor>4 && this.tipoSetor<8){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Boolean verificaSetorOculto(){
+        if(this.tipoSetor<=8){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

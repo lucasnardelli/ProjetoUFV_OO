@@ -14,6 +14,9 @@ public class JogadorSuporte extends Jogador {
     public void recuperarDEF(List<Jogador> jogadores) {
         System.out.print("Você deseja recuperar a defesa de qual jogador(1 ou 2)?");
         int jogador = input.nextInt();
+        if(jogador > jogadores.size() || jogador < 0){
+            throw new AllException("Esse jogador não existe!");
+        }
 
         //jogador-1 vetor[0]==jogador1
         jogadores.get(jogador - 1).setDEF((jogadores.get(jogador - 1).getDEF() + 2)); //adicionando +2 de DEF para o jogar selecionado
