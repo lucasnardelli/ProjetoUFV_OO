@@ -133,7 +133,7 @@ public abstract class Jogador  {
     }
 
     // metodo para o jogador procurar no setor que ele está
-    public void procurar(Jogador jogador, List<Virus> virus) {
+    public void procurar(Jogador jogador, List<Virus> virus) {         
         // variavel para armazenar um valor aleatorio de 1 a 6
         int valor = gerador.nextInt(6) + 1;
         // verificando se o jogador vai encontrar alguma coisa no setor
@@ -147,7 +147,7 @@ public abstract class Jogador  {
             System.out.println("Parabens, sua defesa foi aumentada em 2");
         } else {
             int[] mat = new int[5];
-            int aux = 0;
+            int aux = 0;           
             for (Virus vir : virus) {
                 // tirar 1 de DEF dos inimigos do setor
                 vir.setDEF(vir.getDEF() - 1);
@@ -156,11 +156,11 @@ public abstract class Jogador  {
                 }
                 aux++;
             }
-            for (int i = 0; i < virus.size(); i++) {
-                if (mat[i] == 1) {
-                    virus.remove(i);
-                }
-            }
+            for (int i = virus.size()-1 ; i >= 0; i--) {
+                    if (mat[i] == 1) {
+                        virus.remove(i);
+                    }
+            } 
             System.out.println("Parabens, cada inimigo perdeu 1 de defesa");
         }
     }
