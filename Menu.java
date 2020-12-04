@@ -4,7 +4,11 @@ import java.util.List;
 public class Menu {
     private Scanner input = new Scanner(System.in);
     // atributo para fazer a contagem de quantos ciclos ja ocorreram
-    private int contCiclos = 0;
+    private int contCiclos;
+
+    public Menu (){
+        this.contCiclos = 0;
+    }
 
     public int getContCiclos() {
         return contCiclos;
@@ -25,7 +29,7 @@ public class Menu {
     }
 
     // metodo para o jogador escolher o que ira fazer naquele turno
-    public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux, Setor setor)throws Exception {
+    public void escolherAcao(List<Jogador> jogadores, Jogador jogador, List<Virus> virus, int aux, Setor setor){
         for (int i = 1; i < 3; i++) {
             setor.mostraSetor();
             // verifica se o jogador é suporte
@@ -68,20 +72,17 @@ public class Menu {
                         } else if (escolha == 'r') {
                             jogador.recuperarDEF(jogadores);
                         }else {
-                            throw new AllException("Valor invalido!");
+                            throw new AllException("Essa ação não existe!");
                         }
                     }   
                 }
             } else {
-                if (setor.getTipoSetor() == 5 || setor.getTipoSetor() == 6 || setor.getTipoSetor() == 7) {
+                if (setor.verificaSetorPrivado()) {
                     if(virus.isEmpty()){
                         System.out.println("Player" + aux + " você não tem mais escolha nesse setor");
                     } else{
-                        System.out.println("Player" + aux + " qual vai ser sua escolha: atacar(a)?");
-                        char escolha = input.next().charAt(0);
-                        if (escolha == 'a') {
-                            jogador.atacar(virus, setor);
-                        }
+                        System.out.println("Player" + aux + " você so pode atacar");
+                        jogador.atacar(virus, setor);                        
                     }                   
                 } else {
                     if(virus.isEmpty()){
@@ -95,7 +96,7 @@ public class Menu {
                         } else if (escolha == 'p') {
                             jogador.procurar(jogador, setor.getRecebeVirus());
                         }else {
-                            throw new AllException("Valor invalido!");
+                            throw new AllException("Essa ação não existe!");
                         }
                     }
                 }

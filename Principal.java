@@ -39,14 +39,7 @@ public class Principal {
             // while para o jogo continuar enquanto o ciclo não chegar em 25
             while (menu.getContCiclos() <= 25) {
                 aux = 0;
-                for (Jogador jog : jogadores) { // verifica se os jogadores estão vivos
-                    aux++;
-                    if (jog.getDEF() <= 0) {
-                        jogadores.remove(jog);
-                        System.out.println("Jogador" + aux + " morreu!");
-                    }
-                }
-                aux = 0;
+                tabuleiro.mostrarTabuleiro(setores, jogadores);
                 for (Jogador jog : jogadores) {
                     aux++;
                     
@@ -56,11 +49,10 @@ public class Principal {
                         }
                     }
                     if (setorAtual.getRecebeVirus().isEmpty()) {
+                        jog.movimentar(setorAtual, setores, jog, jogadores, aux);
                         tabuleiro.mostrarTabuleiro(setores, jogadores);
-                        jog.movimentar(setorAtual, setores, jog, jogadores);
-
                     }
-                    if (jog.getLinha() == tabuleiro.getLinhaLocal() && jog.getColuna() == tabuleiro.getColunaLocal()) {
+                    if (jog.getLinha() == tabuleiro.getLinhaVirus() && jog.getColuna() == tabuleiro.getColunaVirus()) {
                         System.out.println("Parabens você ganhou o jogo!");
                         System.exit(0);
                     }
@@ -87,6 +79,20 @@ public class Principal {
                         }
                     }
                 }
+                aux = 0;
+                int[] mat = new int[jogadores.size()];
+                for (Jogador jog : jogadores) { // verifica se os jogadores estão vivos
+                    if(jog.getDEF() <= 0){
+                        mat[aux] = 1;
+                    }
+                    aux++;   
+                }
+                for(int i=0 ; i<jogadores.size() ; i++){
+                    if(mat[i] == 1){
+                        jogadores.remove(i);
+                        System.out.println("O Player " + i+1 + " morreu!");
+                    }
+                }
     
                 if (jogadores.isEmpty()) { // se os dois jogadores morrerem acaba o jogo
                     System.out.println("Os dois jogadores morreram!");
@@ -103,7 +109,7 @@ public class Principal {
         } catch(AllException e){
             System.out.println("Erro: " + e.getMessage());
         }catch (InputMismatchException e){
-            System.out.println("Erro de digito invalido!");
+            System.out.println("Erro na entrada de dados!");
         }catch(Exception e){
             System.out.println(e.getStackTrace());
             System.out.println("Erro inesperado: " + e);

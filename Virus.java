@@ -43,7 +43,7 @@ public class Virus {
     public void atacar(List<Jogador> jogadores) {
         int alvo = gerador.nextInt(jogadores.size());
         int aleatorio = gerador.nextInt(6);
-        if (aleatorio < 2) {
+        if (aleatorio < 3) {
             jogadores.get(alvo).setDEF(jogadores.get(alvo).getDEF() - this.ATK);
         } else {
             System.out.println("Virus errou o ataque");

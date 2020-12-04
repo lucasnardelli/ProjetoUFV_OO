@@ -46,9 +46,9 @@ public abstract class Jogador  {
     }
 
     // metodo usado para o jogador escolher a direção que quer se movimentar
-    public void movimentar(Setor setor, List<Setor> setores, Jogador jogador, List<Jogador> jogadores) {
+    public void movimentar(Setor setor, List<Setor> setores, Jogador jogador, List<Jogador> jogadores, int aux) {
         int criarNovoSetor = 0;
-        System.out.println(direcoesPossiveis(setor));
+        System.out.println(direcoesPossiveis(setor, aux));
         char direcao = input.next().charAt(0);
 
         if (direcao == 'c' && setor.getPortaCima() == true) {
@@ -124,6 +124,7 @@ public abstract class Jogador  {
             }
         } else {
             System.out.println("Inimigo atacado com sucesso!");
+            virus.get(inimigo - 1).setDEF(virus.get(inimigo - 1).getDEF() - this.ATK);
             if (virus.get(inimigo - 1).getDEF() <= 0) {
                 virus.remove(inimigo - 1);
                 System.out.println("Inimigo eliminado");
@@ -136,7 +137,7 @@ public abstract class Jogador  {
         // variavel para armazenar um valor aleatorio de 1 a 6
         int valor = gerador.nextInt(6) + 1;
         // verificando se o jogador vai encontrar alguma coisa no setor
-        if (valor >= 1 && valor <= 3) {
+        if (valor < 4) {
             System.out.println("Você não encontrou nada");
         } else if (valor == 4) {
             jogador.setDEF(getDEF() + 1);
@@ -144,7 +145,7 @@ public abstract class Jogador  {
         } else if (valor == 5) {
             jogador.setDEF(getDEF() + 2);
             System.out.println("Parabens, sua defesa foi aumentada em 2");
-        } else if (valor == 6) {
+        } else {
             int[] mat = new int[5];
             int aux = 0;
             for (Virus vir : virus) {
@@ -155,7 +156,7 @@ public abstract class Jogador  {
                 }
                 aux++;
             }
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < virus.size(); i++) {
                 if (mat[i] == 1) {
                     virus.remove(i);
                 }
@@ -197,12 +198,13 @@ public abstract class Jogador  {
         jogador.setLinha(linha);
         jogador.setColuna(coluna);
         setorPassado.setjogadoresPrincipal(jogadores);
+        setorAtual.setJogadorPassou(true);
         setorAtual.setjogadoresPrincipal(jogadores);
         setorAtual.mostraSetor();
     }
 
-    public String direcoesPossiveis(Setor setor) {
-        String str = "Você deseja ir para: ";
+    public String direcoesPossiveis(Setor setor, int aux) {
+        String str = "Player " + aux + " deseja ir para: ";
         if (setor.getPortaCima() == true) {
             str = str.concat(" Cima(c)");
         }
@@ -221,8 +223,7 @@ public abstract class Jogador  {
 
     // Declaração do metodo de recuperar defesa para o jogador suporte poder ter
     // acesso
-    public void recuperarDEF(List<Jogador> jogadores) {
-    }
+    public void recuperarDEF(List<Jogador> jogadores) {}
 
     @Override
     public String toString() {

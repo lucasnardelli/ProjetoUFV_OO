@@ -16,18 +16,17 @@ public class Setor extends Principal {
     private Virus virus = new Virus();
 
     public Setor(List<Jogador> jogadores, List<Setor> setores, int linha, int coluna, int id) {
-        recebeVirus();
-        
+        this.recebeVirus();
         this.coluna = coluna;
         this.linha = linha;
         this.id = id;
-        this.JogadorPassou = false;
         this.setTipoSetor(gerador.nextInt(10));// 0-4 = setor normal / 5-7 = setor// privado / 8-9 = setor oculto
         for (Jogador jogador : jogadores) {
             if (jogador.getColuna() == this.coluna && jogador.getLinha() == this.linha) {
                 jogadoresNoSetor.add(jogador);
             }
         }
+        this.JogadorPassou = false;
         int verificaBaixo = 0, verificaCima = 0, verificaEsquerda = 0, verificaDireita = 0;
         if (id == 0) {
             this.id = 4;
@@ -62,92 +61,23 @@ public class Setor extends Principal {
                     }
                 }
             }
+
             // gera portas aleatorias
-
-            if (verificaBaixo == 1) {
-                this.portaBaixo = true;
-            } else if (verificaBaixo == 2) {
-                this.portaBaixo = false;
-            } else {
-                int random = gerador.nextInt(3);
-                if (random == 0) {
-                    this.portaBaixo = false;
-                } else {
-                    this.portaBaixo = true;
-                }
-            }
-
-            if (verificaCima == 1) {
-                this.portaCima = true;
-            } else if (verificaCima == 2) {
-                this.portaCima = false;
-            } else {
-                int random = gerador.nextInt(3);
-                if (random == 0) {
-                    this.portaCima = false;
-                } else {
-                    this.portaCima = true;
-                }
-            }
-
-            if (verificaDireita == 1) {
-                this.portaDireita = true;
-            } else if (verificaDireita == 2) {
-                this.portaDireita = false;
-            } else {
-                int random = gerador.nextInt(3);
-                if (random == 0) {
-                    this.portaDireita = false;
-                } else {
-                    this.portaDireita = true;
-                }
-            }
-
-            if (verificaEsquerda == 1) {
-                this.portaEsquerda = true;
-            } else if (verificaEsquerda == 2) {
-                this.portaEsquerda = false;
-            } else {
-                int random = gerador.nextInt(3);
-                if (random == 0) {
-                    this.portaEsquerda = false;
-                } else {
-                    this.portaEsquerda = true;
-                }
-            }
+            this.portaBaixo = this.gerarPortas(verificaBaixo);
+            this.portaCima = this.gerarPortas(verificaCima);
+            this.portaEsquerda = this.gerarPortas(verificaEsquerda);
+            this.portaDireita = this.gerarPortas(verificaDireita);
 
             // Coloca parede se o setor estiver em alguma extremidade
-            if (this.coluna == 0) {
-                this.portaEsquerda = false;
-            }
-            if (this.linha == 0) {
-                this.portaCima = false;
-            }
-            if (this.coluna == 4) {
-                this.portaDireita = false;
-            }
-            if (this.linha == 4) {
-                this.portaBaixo = false;
-            }
-        } else if (id != 0) {
+            definirExtremidade();
+        } else {
             this.portaBaixo = true;
             this.portaCima = true;
             this.portaEsquerda = true;
             this.portaDireita = true;
 
             // Coloca parede se o setor estiver em alguma extremidade
-            if (this.coluna == 0) {
-                this.portaEsquerda = false;
-            }
-            if (this.linha == 0) {
-                this.portaCima = false;
-            }
-            if (this.coluna == 4) {
-                this.portaDireita = false;
-            }
-            if (this.linha == 4) {
-                this.portaBaixo = false;
-            }
+            this.definirExtremidade();
         }
         if (id == 1) {
             listaDeVirus.clear();
@@ -174,7 +104,7 @@ public class Setor extends Principal {
         return this.JogadorPassou;
     }
 
-    public void setJogadorPassou(Boolean jogadorPassou){
+    public void setJogadorPassou(Boolean jogadorPassou) {
         this.JogadorPassou = jogadorPassou;
     }
 
@@ -244,18 +174,17 @@ public class Setor extends Principal {
         //
         for (int i = 0; i < 5 - listaDeVirus.size(); i++) {
             // Sempre que alterar um carcter no Virus.toString alterar os espaços aqui
-            if(listaDeVirus.isEmpty()){
+            if (listaDeVirus.isEmpty()) {
                 System.out.print("    ");
-            }else{
+            } else {
                 System.out.print("     ");
-            }   
+            }
         }
-        if(listaDeVirus.isEmpty()){
+        if (listaDeVirus.isEmpty()) {
             System.out.print("        |");
-        }else{
+        } else {
             System.out.print("     |");
         }
-        
 
         for (int i = 0; i < 4; i++) {
             System.out.println();
@@ -290,27 +219,56 @@ public class Setor extends Principal {
         System.out.println();
     }
 
-    public Boolean verificaSetorNormal(){
-        if(this.tipoSetor<5){
+    public Boolean verificaSetorNormal() {
+        if (this.tipoSetor < 5) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public Boolean verificaSetorPrivado(){
-        if(this.tipoSetor>4 && this.tipoSetor<8){
+    public Boolean verificaSetorPrivado() {
+        if (this.tipoSetor > 4 && this.tipoSetor < 8) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public Boolean verificaSetorOculto(){
-        if(this.tipoSetor<=8){
+    public Boolean verificaSetorOculto() {
+        if (this.tipoSetor >= 8) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
+    public Boolean gerarPortas(int verificador) {
+        if (verificador == 1) {
+            return true;
+        } else if (verificador == 2) {
+            return false;
+        } else {
+            int random = gerador.nextInt(3);
+            if (random == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    public void definirExtremidade(){
+        if(this.linha == 0 ){
+            this.portaCima = false;
+        } else if(this.linha == 4){
+            this.portaBaixo = false;
+        }
+        if (this.coluna == 0) {
+            this.portaEsquerda = false;
+        } else if(this.coluna == 4){
+            this.portaDireita = false;
+        }
+    }
+
 }
