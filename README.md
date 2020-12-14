@@ -1,5 +1,5 @@
 # ProjetoUFV_OO
-Projeto feito para a matéria de orientada a objeto
+Projeto feito para a matéria de programação orientada a objeto
 
 Universidade Federal de Viçosa
 Campus Rio Paranaíba
